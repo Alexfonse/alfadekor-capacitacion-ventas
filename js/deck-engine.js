@@ -112,6 +112,42 @@ class DeckEngine {
     };
     window.addEventListener('resize', resize);
     resize();
+
+    // Fullscreen change listener
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        document.body.classList.remove('theater-mode');
+      }
+      this.updateFullscreenUI();
+      setTimeout(resize, 50);
+    });
+
+    // Footer proximity detection in theater mode
+    const footer = document.querySelector('.fixed-footer-bar');
+    if (footer) {
+      document.addEventListener('mousemove', (e) => {
+        if (document.body.classList.contains('theater-mode')) {
+          if (e.clientY > window.innerHeight - 90) {
+            footer.classList.add('footer-visible');
+          } else {
+            footer.classList.remove('footer-visible');
+          }
+        }
+      });
+    }
+
+    // Magnetic button effect
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
   }
 
   updateSlide(index) {
@@ -133,6 +169,10 @@ class DeckEngine {
     if (window.reactBitsFX) {
       window.reactBitsFX.initSpotlight();
       window.reactBitsFX.initTilt();
+    }
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
     }
   }
 
@@ -179,24 +219,22 @@ class DeckEngine {
   toggleFullscreen() {
     this.playClick();
     if (!document.fullscreenElement) {
+      document.body.classList.add('theater-mode');
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().then(() => {
           this.updateFullscreenUI();
+          window.dispatchEvent(new Event('resize'));
         }).catch(() => {
-          document.body.classList.toggle('theater-mode');
           this.updateFullscreenUI();
           window.dispatchEvent(new Event('resize'));
         });
       } else {
-        document.body.classList.toggle('theater-mode');
         this.updateFullscreenUI();
         window.dispatchEvent(new Event('resize'));
       }
     } else {
       if (document.exitFullscreen) {
-        document.exitFullscreen().then(() => {
-          this.updateFullscreenUI();
-        }).catch(() => {});
+        document.exitFullscreen().catch(() => {});
       }
       document.body.classList.remove('theater-mode');
       this.updateFullscreenUI();
@@ -308,4 +346,8 @@ class DeckEngine {
 
 window.addEventListener('DOMContentLoaded', () => {
   window.deck = new DeckEngine();
+  // Initialize Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 });

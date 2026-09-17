@@ -55,23 +55,89 @@
   100% { box-shadow: 0 0 35px rgba(212,175,55,0.65), 0 0 10px rgba(252,232,166,0.4); }
 }
 
+/* Stagger animation system with proper initial hidden state */
 .anim-1, .anim-2, .anim-3, .anim-4, .anim-5 {
-  opacity: 1;
+  opacity: 0;
+  transform: translateY(18px);
 }
 
-.slide.active .anim-1 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.02s; }
-.slide.active .anim-2 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.05s; }
-.slide.active .anim-3 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.08s; }
-.slide.active .anim-4 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.11s; }
-.slide.active .anim-5 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.14s; }
+.slide.active .anim-1 { animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.05s; }
+.slide.active .anim-2 { animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.15s; }
+.slide.active .anim-3 { animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.25s; }
+.slide.active .anim-4 { animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.35s; }
+.slide.active .anim-5 { animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.45s; }
 
-@keyframes fadeInUp {
+@keyframes fadeSlideUp {
   from {
-    opacity: 0.2;
-    transform: translateY(12px);
+    opacity: 0;
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Scale reveal for images */
+.slide.active .img-reveal {
+  animation: scaleReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s;
+}
+
+@keyframes scaleReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Parallax subtle float on images */
+.parallax-img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Magnetic button effect */
+.nav-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease;
+}
+
+/* Card entrance with slide-scale */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Gold line draw animation */
+@keyframes lineDrawGold {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.slide.active .line-draw-gold {
+  animation: lineDrawGold 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+  width: 0;
+}
+
+/* Subtle pulse for CTA elements */
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 0 20px 4px rgba(212,175,55,0.25); }
+}
+
+.cta-pulse {
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
+/* Crossfade slide transition */
+.slide {
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }

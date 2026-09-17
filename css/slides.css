@@ -32,8 +32,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  height: calc(100% - 145px);
+  height: calc(100% - 175px);
   margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .s07-material-card {
@@ -70,25 +71,25 @@
 }
 
 .s07-content-box {
-  padding: 16px 14px 18px 14px;
+  padding: 14px 14px 18px 14px;
   background: rgba(10, 14, 22, 0.98);
-  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
   text-align: center;
 }
 
 .s07-title {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--gold-light);
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   margin-bottom: 6px;
 }
 
 .s07-desc {
-  font-size: 15px;
+  font-size: 17px;
   color: #ffffff;
-  line-height: 1.35;
+  line-height: 1.4;
   font-weight: 500;
 }
 

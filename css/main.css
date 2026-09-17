@@ -30,9 +30,9 @@ html, body {
   background-color: var(--bg-dark);
   color: var(--text-white);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: geometricPrecision;
 }
 
 .presentation-wrapper {
@@ -59,7 +59,7 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.95), 0 0 45px rgba(212, 175, 55, 0.15);
   overflow: hidden;
-  image-rendering: -webkit-optimize-contrast;
+  will-change: transform;
 }
 
 .slide {
@@ -110,12 +110,12 @@ html, body {
 }
 
 .brand-medallion-header {
-  width: 52px;
-  height: 52px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #2a2215 0%, #12100e 70%, #080a10 100%);
-  border: 1.5px solid var(--gold-primary);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.35), inset 0 0 10px rgba(212, 175, 55, 0.2);
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.45), inset 0 0 12px rgba(212, 175, 55, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,22 +125,22 @@ html, body {
 }
 
 .medallion-monogram-small {
-  width: 80%;
-  height: 80%;
+  width: 82%;
+  height: 82%;
   object-fit: contain;
-  filter: drop-shadow(0 1px 6px rgba(212, 175, 55, 0.6));
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.7));
 }
 
 .brand-name-text {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 900;
   letter-spacing: 3.5px;
   color: #ffffff;
 }
 
 .brand-sub-text {
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 2.8px;
   color: var(--gold-primary);
   text-transform: uppercase;
@@ -148,12 +148,12 @@ html, body {
 }
 
 .brand-medallion-grand {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #382c16 0%, #18140f 70%, #080a10 100%);
-  border: 2.5px solid var(--gold-primary);
-  box-shadow: 0 0 35px rgba(212, 175, 55, 0.45), inset 0 0 25px rgba(212, 175, 55, 0.25);
+  border: 3px solid var(--gold-primary);
+  box-shadow: 0 0 45px rgba(212, 175, 55, 0.55), inset 0 0 30px rgba(212, 175, 55, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,12 +370,21 @@ body.theater-mode .presentation-wrapper {
 }
 
 body.theater-mode .fixed-footer-bar {
-  opacity: 0.15;
-  transition: opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
 }
 
-body.theater-mode .fixed-footer-bar:hover {
+body.theater-mode .fixed-footer-bar:hover,
+body.theater-mode .fixed-footer-bar.footer-visible {
   opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body.theater-mode .top-progress-track {
+  z-index: 10000;
 }
 
 .grid-modal {

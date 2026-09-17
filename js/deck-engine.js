@@ -106,9 +106,7 @@ class DeckEngine {
       const isTheater = document.body.classList.contains('theater-mode');
       const availH = isTheater ? window.innerHeight : window.innerHeight - 65;
       const scale = Math.min(availW / 1920, availH / 1080);
-      const offsetX = (availW - 1920 * scale) / 2;
-      const offsetY = (availH - 1080 * scale) / 2;
-      this.stage.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+      this.stage.style.transform = `scale(${scale})`;
     };
     window.addEventListener('resize', resize);
     resize();

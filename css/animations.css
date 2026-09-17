@@ -1,0 +1,77 @@
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 320px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.16), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.tilt-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.shiny-gold-text {
+  background: linear-gradient(110deg, #d4af37 0%, #fff 40%, #fce8a6 50%, #d4af37 60%, #9a6f1a 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineSweep 4.5s linear infinite;
+}
+
+@keyframes shineSweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.ambient-aurora {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 600px at 15% 20%, rgba(212,175,55,0.07), transparent 70%),
+              radial-gradient(circle 500px at 85% 80%, rgba(30,58,138,0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gold-pulse {
+  animation: goldPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 15px rgba(212,175,55,0.25); }
+  100% { box-shadow: 0 0 35px rgba(212,175,55,0.65), 0 0 10px rgba(252,232,166,0.4); }
+}
+
+.anim-1, .anim-2, .anim-3, .anim-4, .anim-5 {
+  opacity: 1;
+}
+
+.slide.active .anim-1 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.02s; }
+.slide.active .anim-2 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.05s; }
+.slide.active .anim-3 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.08s; }
+.slide.active .anim-4 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.11s; }
+.slide.active .anim-5 { animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.14s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0.2;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

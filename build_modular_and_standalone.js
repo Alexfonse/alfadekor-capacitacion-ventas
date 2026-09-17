@@ -1,38 +1,139 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALFADEKOR · Maestría en Ventas de Porcelanatos y Revestimientos</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+const fs = require('fs');
+const path = require('path');
+
+const brainDir = 'C:\\Users\\Gerencia\\.gemini\\antigravity\\brain\\03c669ef-8edf-4146-88a3-071440441d6d';
+const repoDir = 'D:\\Documentos\\Descargas\\alfadekor-capacitacion-ventas';
+const standaloneOut = 'D:\\Documentos\\Descargas\\Capacitacion-Alfadekor-Maestria-en-Ventas.html';
+const b64Path = path.join(brainDir, 'b64_images.json');
+const b64 = JSON.parse(fs.readFileSync(b64Path, 'utf8'));
+
+const cssDir = path.join(repoDir, 'css');
+const jsDir = path.join(repoDir, 'js');
+const imgDir = path.join(repoDir, 'assets', 'images');
+const iconDir = path.join(repoDir, 'assets', 'icons');
+[cssDir, jsDir, imgDir, iconDir].forEach(d => {
+  if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
+});
+
+// SVG ICONS
+const ICONS = {
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  shieldCheck: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+  droplet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+  sparkles: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>`,
+  trending: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  heart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  award: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
+  home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  building: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="8" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`,
+  cross: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  layers: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+  grid: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+  maximize: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`,
+  volume: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`,
+  volumeX: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`,
+  chevronLeft: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>`,
+  chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>`,
+  help: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  clipboard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+  handshakeIcon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 17 2 2a1 1 0 0 0 1.4 0l4.3-4.3a1 1 0 0 0 0-1.4l-2-2"/><path d="m3 11 7.7 7.7a1 1 0 0 0 1.4 0L21 9.8a2 2 0 0 0 0-2.8l-1.4-1.4a2 2 0 0 0-2.8 0L9.4 13"/><path d="m7 7 3-3a1 1 0 0 1 1.4 0l2 2"/></svg>`,
+  target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+  dollar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+  clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+  info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`
+};
+
+const SLIDE_TITLES = [
+  "Portada: Maestría en Ventas",
+  "¿Por Qué Existe Esta Capacitación?",
+  "El Nuevo Consumidor 2026",
+  "No Vendemos Porcelanatos, Vendemos Transformación",
+  "Cerámica vs Porcelanato (Diferenciación Técnica)",
+  "Ventajas del Porcelanato (6 Pilares)",
+  "Tipos de Porcelanato (Muestrario de Vanguardia)",
+  "Tendencias Arquitectónicas 2026",
+  "Formatos para Cada Espacio",
+  "Acabados y Características Técnicas",
+  "Aplicaciones en Cada Ambiente",
+  "Proyectos que Inspiran (Portafolio)",
+  "Cómo Leer al Cliente en 30 Segundos",
+  "Las 5 Preguntas Maestras",
+  "La Regla 80/20 de las Ventas",
+  "Método CBR Alfadekor",
+  "CBR Aplicado: En una Sala",
+  "CBR Aplicado: En Baños",
+  "CBR Aplicado: En Cocinas",
+  "CBR Aplicado: En Proyectos Comerciales",
+  "Objeción: 'Está Muy Caro'",
+  "Objeción: 'En Otra Tienda es Más Barato'",
+  "La Técnica de los Tres Escenarios",
+  "Cierre por Visualización",
+  "Cierre por Seguridad y Respaldo",
+  "Venta Cruzada Alfadekor (Kit Completo)",
+  "El Proceso de Venta Perfecto (8 Pasos)",
+  "Caso Práctico Interactivo (Apto 90m²)",
+  "Evaluación Final y Certificación",
+  "ADN del Vendedor Alfadekor (5 Pilares de Oro)"
+];
+
+function renderLogo(isModular, type = 'header', extraStyle = '') {
+  const officialMedallion = isModular ? 'assets/icons/logo_official_medallion.webp' : b64.logo_official_medallion;
+  const symbolMedallion = isModular ? 'assets/icons/logo_symbol_medallion.webp' : b64.logo_symbol_medallion;
   
-  <link rel="stylesheet" href="css/main.css">
+  if (type === 'grand') {
+    return `
+      <div class="brand-medallion-grand gold-pulse" style="${extraStyle}">
+        <img src="${officialMedallion}" alt="ALFA DEKOR" class="brand-medallion-grand-img">
+      </div>
+    `;
+  }
+  
+  return `
+    <div class="brand-logo-wrap" style="${extraStyle}">
+      <img src="${symbolMedallion}" alt="ALFA DEKOR" class="header-logo-medallion">
+      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
+        <span class="brand-name-text">ALFA DEKOR</span>
+        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
+      </div>
+    </div>
+  `;
+}
 
-</head>
-<body>
-  <!-- Top Progress Bar -->
-  <div class="top-progress-track">
-    <div class="top-progress-bar" id="progressBar"></div>
-  </div>
+function getImgSrc(isModular, key) {
+  if (isModular) {
+    if (key.startsWith('medallion_') || key.startsWith('logo_')) return `assets/icons/${key}.webp`;
+    return `assets/images/${key}.webp`;
+  }
+  return b64[key] || '';
+}
 
-  <!-- Main 16:9 Presentation Stage -->
-  <main class="presentation-wrapper">
-    <div class="slide-stage" id="slideStage">
-      <!-- Ambient Aurora Background Effect -->
-      <div class="ambient-aurora"></div>
+function getHeader(isModular, slideNum) {
+  const numStr = slideNum < 10 ? '0' + slideNum : String(slideNum);
+  return `
+        <div class="slide-meta">
+          <div class="slide-num">${numStr}</div>
+          <div class="brand-logo-slot">${renderLogo(isModular, 'header')}</div>
+        </div>
+  `;
+}
 
-<!-- ==================== SLIDE 01: PORTADA ==================== -->
+// Exported function to generate all 30 pristine slides
+function generateAll30Slides(isModular) {
+  return [
+    // -------------------------------------------------------------
+    // SLIDE 01: PORTADA MAESTRÍA EN VENTAS
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 01: PORTADA ==================== -->
       <section class="slide active" data-slide="1" style="padding:0;">
         <div style="display:grid; grid-template-columns: 1.05fr 0.95fr; width:100%; height:100%;">
           <div style="padding: 85px 70px 75px 95px; display:flex; flex-direction:column; justify-content:space-between; z-index:2; position:relative;">
             <div>
-              
-      <div class="brand-medallion-grand gold-pulse" style="">
-        <img src="assets/icons/logo_official_medallion.webp" alt="ALFA DEKOR" class="brand-medallion-grand-img">
-      </div>
-    
+              ${renderLogo(isModular, 'grand')}
 
               <div class="anim-1" style="font-family:var(--font-serif); font-size:42px; font-weight:700; color:#ffffff; letter-spacing:3px;">MAESTRÍA EN</div>
               <div class="anim-2 gold-gradient" style="font-family:var(--font-serif); font-size:92px; font-weight:900; line-height:1; letter-spacing:3px; margin: 10px 0 25px 0;">VENTAS</div>
@@ -52,28 +153,18 @@
           </div>
 
           <div style="position:relative; height:100%; overflow:hidden;">
-            <img src="assets/images/penthouse_living_room.webp" alt="Luxury Penthouse" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.95) contrast(1.08);">
+            <img src="${getImgSrc(isModular, 'penthouse_living_room')}" alt="Luxury Penthouse" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.95) contrast(1.08);">
             <div style="position:absolute; inset:0; background:linear-gradient(to right, #080a10 0%, transparent 25%); pointer-events:none;"></div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 02: ¿POR QUÉ EXISTE ESTA CAPACITACIÓN? ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 02: ¿POR QUÉ EXISTE ESTA CAPACITACIÓN?
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 02: ¿POR QUÉ EXISTE ESTA CAPACITACIÓN? ==================== -->
       <section class="slide" data-slide="2">
-        
-        <div class="slide-meta">
-          <div class="slide-num">02</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 2)}
 
         <div style="margin-bottom:22px;">
           <h2 class="title-large anim-1">¿POR QUÉ EXISTE <span class="gold-gradient">ESTA CAPACITACIÓN?</span></h2>
@@ -84,7 +175,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 01</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.home}</div>
               <h3 class="s30-pillar-title">Inversión Alta</h3>
               <div class="s30-pillar-badge">Patrimonio Familiar</div>
               <p class="s30-pillar-desc">
@@ -100,7 +191,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 02</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.heart}</div>
               <h3 class="s30-pillar-title">Carga Emocional</h3>
               <div class="s30-pillar-badge">Permanencia de 20+ Años</div>
               <p class="s30-pillar-desc">
@@ -116,7 +207,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 03</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shield}</div>
               <h3 class="s30-pillar-title">Miedo al Error</h3>
               <div class="s30-pillar-badge">Riesgo Constructivo</div>
               <p class="s30-pillar-desc">
@@ -132,7 +223,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 04</div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
               <h3 class="s30-pillar-title">Asesor Experto</h3>
               <div class="s30-pillar-badge">Autoridad Alfadekor</div>
               <p class="s30-pillar-desc">
@@ -145,24 +236,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 03: EL NUEVO CONSUMIDOR 2026 ==================== -->
+    `<!-- ==================== SLIDE 03: EL NUEVO CONSUMIDOR 2026 ==================== -->
       <section class="slide" data-slide="3">
-        
-        <div class="slide-meta">
-          <div class="slide-num">03</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 3)}
 
         <div style="margin-bottom:22px;">
           <h2 class="title-large anim-1">EL NUEVO CONSUMIDOR <span class="gold-gradient">ARQUITECTÓNICO 2026</span></h2>
@@ -173,7 +251,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Perfil 01</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.search}</div>
               <h3 class="s30-pillar-title">Hiperinformado</h3>
               <div class="s30-pillar-badge">Pinterest & TikTok</div>
               <p class="s30-pillar-desc">
@@ -189,7 +267,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Perfil 02</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <h3 class="s30-pillar-title">Sensible al Diseño</h3>
               <div class="s30-pillar-badge">Estética Contemporánea</div>
               <p class="s30-pillar-desc">
@@ -205,7 +283,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Perfil 03</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shieldCheck}</div>
               <h3 class="s30-pillar-title">Busca Certeza</h3>
               <div class="s30-pillar-badge">Garantía de Lote Único</div>
               <p class="s30-pillar-desc">
@@ -221,7 +299,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Perfil 04</div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.clock}</div>
               <h3 class="s30-pillar-title">Valora la Rapidez</h3>
               <div class="s30-pillar-badge">Solución Llave en Mano</div>
               <p class="s30-pillar-desc">
@@ -234,24 +312,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 04: NO VENDEMOS PORCELANATOS, VENDEMOS TRANSFORMACIÓN ==================== -->
+    `<!-- ==================== SLIDE 04: NO VENDEMOS PORCELANATOS, VENDEMOS TRANSFORMACIÓN ==================== -->
       <section class="slide" data-slide="4">
-        
-        <div class="slide-meta">
-          <div class="slide-num">04</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 4)}
 
         <div style="margin-bottom:22px;">
           <h2 class="title-large anim-1">NO VENDEMOS PORCELANATOS, <span class="gold-gradient">VENDEMOS TRANSFORMACIÓN</span></h2>
@@ -262,7 +327,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Dimensión 01</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.home}</div>
               <h3 class="s30-pillar-title">Estatus y Orgullo</h3>
               <div class="s30-pillar-badge">El Espacio de Recibo</div>
               <p class="s30-pillar-desc">
@@ -278,7 +343,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Dimensión 02</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.heart}</div>
               <h3 class="s30-pillar-title">Confort Diario</h3>
               <div class="s30-pillar-badge">Paz Visual y Acústica</div>
               <p class="s30-pillar-desc">
@@ -294,7 +359,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Dimensión 03</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shield}</div>
               <h3 class="s30-pillar-title">Durabilidad Eterna</h3>
               <div class="s30-pillar-badge">Cero Desgaste ni Cera</div>
               <p class="s30-pillar-desc">
@@ -310,7 +375,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Dimensión 04</div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.trending}</div>
               <h3 class="s30-pillar-title">Plusvalía Inmueble</h3>
               <div class="s30-pillar-badge">Inversión que Crece</div>
               <p class="s30-pillar-desc">
@@ -323,24 +388,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 05: CERÁMICA VS PORCELANATO ==================== -->
+    `<!-- ==================== SLIDE 05: CERÁMICA VS PORCELANATO ==================== -->
       <section class="slide" data-slide="5">
-        
-        <div class="slide-meta">
-          <div class="slide-num">05</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 5)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CERÁMICA VS <span class="gold-gradient">PORCELANATO</span></h2>
@@ -351,7 +403,7 @@
           <!-- LEFT: Cerámica Tradicional -->
           <div class="anim-2" style="display:flex; flex-direction:column; gap:14px; height:100%;">
             <div style="position:relative; height:310px; border-radius:14px; overflow:hidden; border:2px solid rgba(239,68,68,0.5); box-shadow:0 15px 35px rgba(0,0,0,0.7);">
-              <img src="assets/images/ceramica_macro_hd.webp" alt="Cerámica Tradicional Bizcocho Poroso" style="width:100%; height:100%; object-fit:cover;">
+              <img src="${getImgSrc(isModular, 'ceramica_macro_hd')}" alt="Cerámica Tradicional Bizcocho Poroso" style="width:100%; height:100%; object-fit:cover;">
               <div style="position:absolute; top:14px; left:14px; background:rgba(185,28,28,0.95); color:#fff; font-weight:800; font-size:15px; padding:6px 18px; border-radius:8px; letter-spacing:1.5px; box-shadow:0 4px 15px rgba(0,0,0,0.6);">
                 CERÁMICA TRADICIONAL
               </div>
@@ -380,7 +432,7 @@
           <!-- RIGHT: Porcelanato Alfadekor -->
           <div class="anim-3" style="display:flex; flex-direction:column; gap:14px; height:100%;">
             <div style="position:relative; height:310px; border-radius:14px; overflow:hidden; border:2px solid var(--gold-primary); box-shadow:0 15px 35px rgba(0,0,0,0.7), 0 0 25px rgba(212,175,55,0.3);">
-              <img src="assets/images/porcelanato_macro_hd.webp" alt="Porcelanato Alfadekor Gres Ultra-Denso" style="width:100%; height:100%; object-fit:cover;">
+              <img src="${getImgSrc(isModular, 'porcelanato_macro_hd')}" alt="Porcelanato Alfadekor Gres Ultra-Denso" style="width:100%; height:100%; object-fit:cover;">
               <div style="position:absolute; top:14px; left:14px; background:rgba(212,175,55,0.96); color:#080a10; font-weight:800; font-size:15px; padding:6px 18px; border-radius:8px; letter-spacing:1.5px; box-shadow:0 4px 15px rgba(0,0,0,0.6);">
                 PORCELANATO ALFADEKOR
               </div>
@@ -406,24 +458,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 06: VENTAJAS DEL PORCELANATO ==================== -->
+    `<!-- ==================== SLIDE 06: VENTAJAS DEL PORCELANATO ==================== -->
       <section class="slide" data-slide="6">
-        
-        <div class="slide-meta">
-          <div class="slide-num">06</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 6)}
 
         <div style="margin-bottom:22px;">
           <h2 class="title-large anim-1">VENTAJAS DEL <span class="gold-gradient">PORCELANATO</span></h2>
@@ -434,7 +473,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.droplet}</div>
                 <span class="card-pillar-tag">Ventaja 01</span>
               </div>
               <h3 class="card-pillar-title">Baja Absorción (&lt;0.05%)</h3>
@@ -448,7 +487,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.shield}</div>
                 <span class="card-pillar-tag">Ventaja 02</span>
               </div>
               <h3 class="card-pillar-title">Dureza Extrema (Mohs 7)</h3>
@@ -462,7 +501,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.sparkles}</div>
                 <span class="card-pillar-tag">Ventaja 03</span>
               </div>
               <h3 class="card-pillar-title">Rectificado a 90°</h3>
@@ -476,7 +515,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.maximize}</div>
                 <span class="card-pillar-tag">Ventaja 04</span>
               </div>
               <h3 class="card-pillar-title">Gran Formato (60x120+)</h3>
@@ -490,7 +529,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.trending}</div>
                 <span class="card-pillar-tag">Ventaja 05</span>
               </div>
               <h3 class="card-pillar-title">Plusvalía Inmediata</h3>
@@ -504,7 +543,7 @@
           <div class="card-glass spotlight-card tilt-card anim-2" style="padding:26px 24px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+                <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
                 <span class="card-pillar-tag">Ventaja 06</span>
               </div>
               <h3 class="card-pillar-title">Mantenimiento Simple</h3>
@@ -515,24 +554,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 07: TIPOS DE PORCELANATO ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 07: TIPOS DE PORCELANATO (MUESTRARIO)
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 07: TIPOS DE PORCELANATO ==================== -->
       <section class="slide" data-slide="7">
-        
-        <div class="slide-meta">
-          <div class="slide-num">07</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 7)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">TIPOS DE <span class="gold-gradient">PORCELANATO</span></h2>
@@ -544,7 +573,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/tex_marmol.webp" alt="Mármol Calacatta" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'tex_marmol')}" alt="Mármol Calacatta" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Clásico Supremo</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Mármol Calacatta</h3>
@@ -560,7 +589,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/tex_travertino.webp" alt="Travertino Romano" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'tex_travertino')}" alt="Travertino Romano" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Orgánico Cálido</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Travertino Italiano</h3>
@@ -576,7 +605,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/tex_cemento.webp" alt="Cemento Industrial" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'tex_cemento')}" alt="Cemento Industrial" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Minimalismo Loft</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Cemento Urbano</h3>
@@ -592,7 +621,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/tex_madera.webp" alt="Madera Porcelánica" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'tex_madera')}" alt="Madera Porcelánica" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Calidez Eterna</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Madera Porcelánica</h3>
@@ -608,7 +637,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/tex_negro.webp" alt="Nero Marquina" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'tex_negro')}" alt="Nero Marquina" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Drama & Contraste</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Nero Marquina</h3>
@@ -620,24 +649,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 08: TENDENCIAS 2026 ==================== -->
+    `<!-- ==================== SLIDE 08: TENDENCIAS 2026 ==================== -->
       <section class="slide" data-slide="8">
-        
-        <div class="slide-meta">
-          <div class="slide-num">08</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 8)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">TENDENCIAS <span class="gold-gradient">ARQUITECTÓNICAS 2026</span></h2>
@@ -648,7 +664,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/trend_calacatta.webp" alt="Calacatta Gold" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'trend_calacatta')}" alt="Calacatta Gold" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Tendencia 01</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Calacatta Gold</h3>
@@ -663,7 +679,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/trend_travertino.webp" alt="Travertino Navona" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'trend_travertino')}" alt="Travertino Navona" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Tendencia 02</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Travertino Poroso</h3>
@@ -678,7 +694,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/trend_greige.webp" alt="Greige Cálido" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'trend_greige')}" alt="Greige Cálido" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Tendencia 03</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Greige Cálido</h3>
@@ -693,7 +709,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/trend_wood.webp" alt="Roble Listonado" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'trend_wood')}" alt="Roble Listonado" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Tendencia 04</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Roble Listonado</h3>
@@ -708,7 +724,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:320px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px;">
-                <img src="assets/images/trend_nero.webp" alt="Nero Escultórico" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'trend_nero')}" alt="Nero Escultórico" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Tendencia 05</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Black & Brass</h3>
@@ -720,24 +736,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 09: FORMATOS PARA CADA ESPACIO ==================== -->
+    `<!-- ==================== SLIDE 09: FORMATOS PARA CADA ESPACIO ==================== -->
       <section class="slide" data-slide="9">
-        
-        <div class="slide-meta">
-          <div class="slide-num">09</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 9)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">FORMATOS PARA <span class="gold-gradient">CADA ESPACIO</span></h2>
@@ -749,7 +752,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+                <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.grid}</div>
                 <span style="font-family:var(--font-serif); font-size:32px; font-weight:800; color:var(--gold-primary);">60x60 cm</span>
               </div>
               <span class="card-pillar-tag">Formato Ágil</span>
@@ -768,7 +771,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.14) 0%, rgba(14,18,28,0.95) 100%); box-shadow:0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.2);">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div>
+                <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.maximize}</div>
                 <span style="font-family:var(--font-serif); font-size:36px; font-weight:900; color:var(--gold-light);">60x120 cm</span>
               </div>
               <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900;">BEST SELLER ALFADEKOR</span>
@@ -787,7 +790,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+                <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
                 <span style="font-family:var(--font-serif); font-size:32px; font-weight:800; color:var(--gold-primary);">120x240 cm</span>
               </div>
               <span class="card-pillar-tag">Ultra Formato</span>
@@ -802,24 +805,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 10: ACABADOS Y CARACTERÍSTICAS ==================== -->
+    `<!-- ==================== SLIDE 10: ACABADOS Y CARACTERÍSTICAS ==================== -->
       <section class="slide" data-slide="10">
-        
-        <div class="slide-meta">
-          <div class="slide-num">10</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 10)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">ACABADOS Y <span class="gold-gradient">CARACTERÍSTICAS TÉCNICAS</span></h2>
@@ -831,7 +821,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.sparkles}</div>
                 <span class="card-pillar-tag">Alto Brillo</span>
               </div>
               <h3 class="card-pillar-title">Acabado Pulido Nano</h3>
@@ -849,7 +839,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.eye}</div>
                 <span class="card-pillar-tag">Tacto Sedoso</span>
               </div>
               <h3 class="card-pillar-title">Acabado Satinado / Mate</h3>
@@ -867,7 +857,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div class="luxury-icon-disc core-disc">${ICONS.shield}</div>
                 <span class="card-pillar-tag">Grip Seguro</span>
               </div>
               <h3 class="card-pillar-title">Acabado Estructurado / Rústico</h3>
@@ -881,24 +871,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 11: APLICACIONES EN CADA AMBIENTE ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 11: APLICACIONES EN CADA AMBIENTE
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 11: APLICACIONES EN CADA AMBIENTE ==================== -->
       <section class="slide" data-slide="11">
-        
-        <div class="slide-meta">
-          <div class="slide-num">11</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 11)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">APLICACIONES EN <span class="gold-gradient">CADA AMBIENTE</span></h2>
@@ -908,7 +888,7 @@
         <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:18px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.home}</div>
               <span class="card-pillar-tag">Living / Sala</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Salas y Comedores</h3>
               <div class="card-pillar-badge" style="margin-bottom:10px;">60x120 Pulido o Satinado</div>
@@ -921,7 +901,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.droplet}</div>
               <span class="card-pillar-tag">Zonas Húmedas</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Baños de Lujo</h3>
               <div class="card-pillar-badge" style="margin-bottom:10px;">Piso y Pared Continuos</div>
@@ -934,7 +914,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <span class="card-pillar-tag">Gourmet</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Cocinas de Autor</h3>
               <div class="card-pillar-badge" style="margin-bottom:10px;">Resistencia Grasas y Ácidos</div>
@@ -947,7 +927,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.layers}</div>
               <span class="card-pillar-tag">Exterior</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Terrazas y Balcones</h3>
               <div class="card-pillar-badge" style="margin-bottom:10px;">Inalterable al Sol y Lluvia</div>
@@ -960,7 +940,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="8" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.building}</div>
               <span class="card-pillar-tag">Alto Tráfico</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Locales y Oficinas</h3>
               <div class="card-pillar-badge" style="margin-bottom:10px;">PEI 4 / PEI 5 Indestructible</div>
@@ -971,24 +951,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 12: PROYECTOS QUE INSPIRAN ==================== -->
+    `<!-- ==================== SLIDE 12: PROYECTOS QUE INSPIRAN ==================== -->
       <section class="slide" data-slide="12">
-        
-        <div class="slide-meta">
-          <div class="slide-num">12</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 12)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">PROYECTOS QUE <span class="gold-gradient">INSPIRAN</span></h2>
@@ -999,7 +966,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:250px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:16px;">
-                <img src="assets/images/penthouse_living_room.webp" alt="Penthouse" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'penthouse_living_room')}" alt="Penthouse" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Residencial Premium</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Penthouse Los Cerros</h3>
@@ -1011,7 +978,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:250px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:16px;">
-                <img src="assets/images/cbr_luxury_bathroom.webp" alt="Baño Spa" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'cbr_luxury_bathroom')}" alt="Baño Spa" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Bienestar & Spa</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Residencia El Poblado</h3>
@@ -1023,7 +990,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:250px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:16px;">
-                <img src="assets/images/cbr_luxury_kitchen.webp" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Cocina de Autor</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Villa Campestre</h3>
@@ -1035,7 +1002,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="height:250px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:16px;">
-                <img src="assets/images/cbr_commercial_lobby.webp" alt="Lobby Corporativo" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${getImgSrc(isModular, 'cbr_commercial_lobby')}" alt="Lobby Corporativo" style="width:100%; height:100%; object-fit:cover;">
               </div>
               <span class="card-pillar-tag">Corporativo</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Torre Empresarial 93</h3>
@@ -1044,24 +1011,14 @@
             <p class="card-pillar-desc" style="font-size:18px;">Lobby de alto impacto con alfombra porcelánica central y resistencia de tránsito PEI 5.</p>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 13: CÓMO LEER AL CLIENTE ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 13: CÓMO LEER AL CLIENTE EN 30 SEGUNDOS
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 13: CÓMO LEER AL CLIENTE ==================== -->
       <section class="slide" data-slide="13">
-        
-        <div class="slide-meta">
-          <div class="slide-num">13</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 13)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CÓMO LEER AL CLIENTE <span class="gold-gradient">EN 30 SEGUNDOS</span></h2>
@@ -1072,7 +1029,7 @@
           <!-- 1. Diseñador -->
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <span class="card-pillar-tag">Perfil A</span>
               <h3 class="card-pillar-title" style="font-size:22px;">El Estético / Diseñador</h3>
               <div class="card-pillar-badge">Busca Belleza y Tendencia</div>
@@ -1089,7 +1046,7 @@
           <!-- 2. Técnico -->
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shieldCheck}</div>
               <span class="card-pillar-tag">Perfil B</span>
               <h3 class="card-pillar-title" style="font-size:22px;">El Racional / Técnico</h3>
               <div class="card-pillar-badge">Busca Datos y Certidumbre</div>
@@ -1106,7 +1063,7 @@
           <!-- 3. Práctico -->
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.home}</div>
               <span class="card-pillar-tag">Perfil C</span>
               <h3 class="card-pillar-title" style="font-size:22px;">El Práctico / Familiar</h3>
               <div class="card-pillar-badge">Busca Mantenimiento Cero</div>
@@ -1123,7 +1080,7 @@
           <!-- 4. Indeciso -->
           <div class="card-glass spotlight-card anim-2 gold-active-card" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
               <span class="card-pillar-tag">Perfil D</span>
               <h3 class="card-pillar-title" style="font-size:22px;">El Cauteloso / Indeciso</h3>
               <div class="card-pillar-badge">Busca Validación y Guía</div>
@@ -1137,24 +1094,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 14: LAS 5 PREGUNTAS MAESTRAS ==================== -->
+    `<!-- ==================== SLIDE 14: LAS 5 PREGUNTAS MAESTRAS ==================== -->
       <section class="slide" data-slide="14">
-        
-        <div class="slide-meta">
-          <div class="slide-num">14</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 14)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">LAS 5 PREGUNTAS <span class="gold-gradient">MAESTRAS DE DIAGNÓSTICO</span></h2>
@@ -1165,7 +1109,7 @@
           <!-- Pregunta 1 -->
           <div class="card-glass spotlight-card anim-2" style="padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.home}</div>
               <span class="card-pillar-tag">Pregunta 01</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">El Espacio</h3>
               <div class="card-pillar-badge" style="margin-bottom:8px;">¿Qué ambiente va a renovar?</div>
@@ -1180,7 +1124,7 @@
           <!-- Pregunta 2 -->
           <div class="card-glass spotlight-card anim-2" style="padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.users}</div>
               <span class="card-pillar-tag">Pregunta 02</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">Los Habitantes</h3>
               <div class="card-pillar-badge" style="margin-bottom:8px;">¿Quiénes disfrutarán el hogar?</div>
@@ -1195,7 +1139,7 @@
           <!-- Pregunta 3 -->
           <div class="card-glass spotlight-card anim-2" style="padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <span class="card-pillar-tag">Pregunta 03</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">El Estilo</h3>
               <div class="card-pillar-badge" style="margin-bottom:8px;">¿Qué atmósfera sueña lograr?</div>
@@ -1210,7 +1154,7 @@
           <!-- Pregunta 4 -->
           <div class="card-glass spotlight-card anim-2" style="padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.droplet}</div>
               <span class="card-pillar-tag">Pregunta 04</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">La Exigencia</h3>
               <div class="card-pillar-badge" style="margin-bottom:8px;">¿Qué nivel de tráfico y humedad?</div>
@@ -1225,7 +1169,7 @@
           <!-- Pregunta 5 -->
           <div class="card-glass spotlight-card anim-2" style="padding:22px 18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.clock}</div>
               <span class="card-pillar-tag">Pregunta 05</span>
               <h3 class="card-pillar-title" style="font-size:22px; margin:8px 0 4px 0;">El Plazo</h3>
               <div class="card-pillar-badge" style="margin-bottom:8px;">¿Para cuándo en obra?</div>
@@ -1237,24 +1181,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 15: LA REGLA 80/20 DE LAS VENTAS ==================== -->
+    `<!-- ==================== SLIDE 15: LA REGLA 80/20 DE LAS VENTAS ==================== -->
       <section class="slide" data-slide="15">
-        
-        <div class="slide-meta">
-          <div class="slide-num">15</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 15)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">LA REGLA 80/20 <span class="gold-gradient">DE LAS VENTAS</span></h2>
@@ -1266,7 +1197,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:35px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.12) 0%, rgba(14,18,28,0.95) 100%);">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.volume}</div>
                 <span style="font-family:var(--font-serif); font-size:48px; font-weight:900; color:var(--gold-light);">80%</span>
               </div>
               <h3 class="card-pillar-title" style="font-size:32px;">Escucha Activa Consultiva</h3>
@@ -1284,7 +1215,7 @@
           <div class="card-glass spotlight-card anim-2" style="padding:35px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-                <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+                <div class="luxury-icon-disc core-disc">${ICONS.sparkles}</div>
                 <span style="font-family:var(--font-serif); font-size:48px; font-weight:900; color:#ffffff;">20%</span>
               </div>
               <h3 class="card-pillar-title" style="font-size:32px;">Propuesta Quirúrgica</h3>
@@ -1304,24 +1235,14 @@
             "El cliente no compra cuando comprende todo lo que vendes; compra cuando siente que comprendes todo lo que él necesita."
           </span>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 16: MÉTODO CBR ALFADEKOR ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 16: MÉTODO CBR ALFADEKOR
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 16: MÉTODO CBR ALFADEKOR ==================== -->
       <section class="slide" data-slide="16">
-        
-        <div class="slide-meta">
-          <div class="slide-num">16</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 16)}
 
         <div style="margin-bottom:25px;">
           <h2 class="title-large anim-1">MÉTODO <span class="gold-gradient">CBR ALFADEKOR</span></h2>
@@ -1332,7 +1253,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2">
             <div>
               <div class="s30-pillar-tag">Fase 1 · El Dato Técnico</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.layers}</div>
               <h3 class="s30-pillar-title">C · Característica</h3>
               <div class="s30-pillar-badge">¿Qué es el producto?</div>
               <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
@@ -1347,7 +1268,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2">
             <div>
               <div class="s30-pillar-tag">Fase 2 · La Utilidad</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <h3 class="s30-pillar-title">B · Beneficio</h3>
               <div class="s30-pillar-badge">¿Qué hace por el cliente?</div>
               <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
@@ -1362,7 +1283,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2">
             <div>
               <div class="s30-pillar-tag">Fase 3 · La Emoción</div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
               <h3 class="s30-pillar-title">R · Resultado</h3>
               <div class="s30-pillar-badge">¿Qué emoción o estatus vivirá?</div>
               <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
@@ -1374,24 +1295,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 17: CBR EN UNA SALA ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 17: CBR EN UNA SALA
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 17: CBR EN UNA SALA ==================== -->
       <section class="slide" data-slide="17">
-        
-        <div class="slide-meta">
-          <div class="slide-num">17</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 17)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CBR APLICADO: <span class="gold-gradient">EN UNA SALA PRINCIPAL</span></h2>
@@ -1400,7 +1311,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/penthouse_living_room.webp" alt="Sala Penthouse" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'penthouse_living_room')}" alt="Sala Penthouse" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Espacio Social</span>
@@ -1410,7 +1321,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">CARACTERÍSTICA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Este porcelanato Calacatta viene en placas de 60x120 cm con corte rectificado a 90° con láser."</div>
@@ -1418,7 +1329,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">BENEFICIO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Al tener placas el doble de grandes, reducimos el 50% de las juntas y el brillo rebota toda la luz hacia el interior."</div>
@@ -1426,7 +1337,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESULTADO DE VIDA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Su sala se verá como un penthouse moderno, espacioso y elegante. Sus invitados quedarán fascinados al entrar."</div>
@@ -1434,24 +1345,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 18: CBR EN BAÑOS ==================== -->
+    `<!-- ==================== SLIDE 18: CBR EN BAÑOS ==================== -->
       <section class="slide" data-slide="18">
-        
-        <div class="slide-meta">
-          <div class="slide-num">18</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 18)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CBR APLICADO: <span class="gold-gradient">EN BAÑOS DE LUJO</span></h2>
@@ -1460,7 +1358,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/cbr_luxury_bathroom.webp" alt="Baño Spa" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'cbr_luxury_bathroom')}" alt="Baño Spa" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Zona de Bienestar</span>
@@ -1470,7 +1368,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">CARACTERÍSTICA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Este material tiene una tasa de absorción de agua menor al 0.05% y acabado satinado antideslizante R10."</div>
@@ -1478,7 +1376,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">BENEFICIO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"El agua resbala sin penetrar, imposibilitando la formación de moho, hongos o manchas amarillentas en la ducha."</div>
@@ -1486,7 +1384,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESULTADO DE VIDA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Disfrutará cada mañana de un baño impecable como suite de hotel 5 estrellas, seguro para toda su familia."</div>
@@ -1494,11 +1392,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 19: CBR EN COCINAS ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 19: CBR EN COCINAS
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 19: CBR EN COCINAS ==================== -->
       <section class="slide" data-slide="19">
-        ${getHeader(isModular, 19)}
+        \${getHeader(isModular, 19)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CBR APLICADO: <span class="gold-gradient">EN COCINAS GOURMET</span></h2>
@@ -1507,7 +1408,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
+            <img src="\${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Área Culinaria</span>
@@ -1517,7 +1418,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">\${ICONS.layers}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">CARACTERÍSTICA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Porcelanato horneado a 1250°C con cero porosidad superficial y resistencia a manchas químicas."</div>
@@ -1525,7 +1426,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">\${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">BENEFICIO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Puede caer aceite caliente, salsa de tomate o vino tinto; nada se absorbe ni deja mancha permanente."</div>
@@ -1533,7 +1434,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">\${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESULTADO DE VIDA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Cocinar con libertad absoluta sabiendo que con un solo paño húmedo su cocina volverá a quedar reluciente."</div>
@@ -1541,24 +1442,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 20: CBR EN PROYECTOS COMERCIALES ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 20: CBR EN PROYECTOS COMERCIALES
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 20: CBR EN PROYECTOS COMERCIALES ==================== -->
       <section class="slide" data-slide="20">
-        
-        <div class="slide-meta">
-          <div class="slide-num">20</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 20)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CBR APLICADO: <span class="gold-gradient">EN PROYECTOS COMERCIALES</span></h2>
@@ -1567,7 +1458,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/cbr_commercial_lobby.webp" alt="Lobby Comercial" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'cbr_commercial_lobby')}" alt="Lobby Comercial" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Comercial / Corporativo</span>
@@ -1577,7 +1468,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">CARACTERÍSTICA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Masa compacta con clasificación PEI 5 y dureza de superficie Mohs 8 resistente a la abrasión."</div>
@@ -1585,7 +1476,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">BENEFICIO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Soporta miles de personas por día, carritos y tacones sin generar desgaste, opacidad ni rayones."</div>
@@ -1593,7 +1484,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESULTADO DE VIDA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Ahorro de millones en mantención y una imagen corporativa impecable que transmite solidez y éxito."</div>
@@ -1601,24 +1492,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 21: OBJECIÓN: ESTÁ MUY CARO ==================== -->
+    `<!-- ==================== SLIDE 21: OBJECIÓN: ESTÁ MUY CARO ==================== -->
       <section class="slide" data-slide="21">
-        
-        <div class="slide-meta">
-          <div class="slide-num">21</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 21)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">MANEJO DE OBJECIÓN: <span class="gold-gradient">"ESTÁ MUY CARO"</span></h2>
@@ -1627,7 +1505,7 @@
 
         <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/objection_thinking_man.webp" alt="Cliente Pensativo" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'objection_thinking_man')}" alt="Cliente Pensativo" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">La Duda del Precio</span>
@@ -1637,7 +1515,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.shield}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">PASO 1 · VALIDAR Y AISLAR</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Comprendo su punto; cuidar la inversión es lo más sensato. Si dejamos de lado el precio por un instante, ¿el diseño, formato y calidad le encantan?"</div>
@@ -1645,7 +1523,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.dollar}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">PASO 2 · COSTE A 25 AÑOS</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Un piso dura mínimo 25 años. La diferencia frente a un producto básico son apenas $15.000 al mes. Menos de lo que cuesta un café a la semana por tener lujo permanente."</div>
@@ -1653,7 +1531,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">PASO 3 · EL COSTO DEL ERROR</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Picar un piso desportillado a los 3 años cuesta el triple: escombros, nuevo material y mano de obra. En Alfadekor compra tranquilidad una sola vez."</div>
@@ -1661,24 +1539,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 22: OBJECIÓN: OTRA TIENDA ==================== -->
+    `<!-- ==================== SLIDE 22: OBJECIÓN: OTRA TIENDA ==================== -->
       <section class="slide" data-slide="22">
-        
-        <div class="slide-meta">
-          <div class="slide-num">22</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 22)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">OBJECIÓN: <span class="gold-gradient">"EN OTRA TIENDA ES MÁS BARATO"</span></h2>
@@ -1687,7 +1552,7 @@
 
         <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/meeting_consultation.webp" alt="Asesoría Showroom" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'meeting_consultation')}" alt="Asesoría Showroom" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Diferenciación Real</span>
@@ -1697,7 +1562,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.scale}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">PREGUNTA DE DESARME</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Es muy probable que haya opciones de menor precio. La pregunta crucial es: ¿ese producto es porcelanato masa blanca prensado a 1250°C o cerámica de arcilla roja esmaltada?"</div>
@@ -1705,7 +1570,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.shieldCheck}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">LOTE ÚNICO GARANTIZADO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Muchos liquidadores venden saldos de diferentes lotes que al instalarse cambian de color entre cajas. En Alfadekor entregamos lote único y mismo tono certificado."</div>
@@ -1713,7 +1578,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESPALDO DIRECTO</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Somos importadores directos. Si le faltan 2 cajas a su maestro, aquí tenemos reposición idéntica inmediata de bodega sin retrasar su obra."</div>
@@ -1721,24 +1586,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 23: TRES ESCENARIOS ==================== -->
+    `<!-- ==================== SLIDE 23: TRES ESCENARIOS ==================== -->
       <section class="slide" data-slide="23">
-        
-        <div class="slide-meta">
-          <div class="slide-num">23</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 23)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">LA TÉCNICA DE LOS <span class="gold-gradient">TRES ESCENARIOS</span></h2>
@@ -1749,7 +1601,7 @@
           <!-- 1. Económica -->
           <div class="card-glass spotlight-card anim-2" style="padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.layers}</div>
               <span class="card-pillar-tag">Escenario 1</span>
               <h3 class="card-pillar-title">Opción Básica / Económica</h3>
               <div class="card-pillar-badge">Formato 60x60 cm</div>
@@ -1765,7 +1617,7 @@
           <!-- 2. Ideal Alfadekor -->
           <div class="card-glass spotlight-card anim-2" style="padding:30px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%);">
             <div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.sparkles}</div>
               <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900;">RECOMENDACIÓN IDEAL</span>
               <h3 class="card-pillar-title">Porcelanato 60x120 cm</h3>
               <div class="card-pillar-badge">El Punto Óptimo de Lujo y Valor</div>
@@ -1781,7 +1633,7 @@
           <!-- 3. Premium Slabs -->
           <div class="card-glass spotlight-card anim-2" style="padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.award}</div>
               <span class="card-pillar-tag">Escenario 3</span>
               <h3 class="card-pillar-title">Maxi Slabs Exclusivos</h3>
               <div class="card-pillar-badge">Formato 120x240 cm</div>
@@ -1794,24 +1646,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 24: CIERRE POR VISUALIZACIÓN ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 24: CIERRE POR VISUALIZACIÓN
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 24: CIERRE POR VISUALIZACIÓN ==================== -->
       <section class="slide" data-slide="24">
-        
-        <div class="slide-meta">
-          <div class="slide-num">24</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 24)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CIERRE POR <span class="gold-gradient">VISUALIZACIÓN EMOCIONAL</span></h2>
@@ -1820,7 +1662,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/warm_illuminated_home.webp" alt="Hogar Iluminado" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'warm_illuminated_home')}" alt="Hogar Iluminado" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">La Emoción del Logro</span>
@@ -1830,7 +1672,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.eye}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">PASO 1 · PINTAR EL CUADRO MENTAL</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Cierre los ojos un segundo. Imagine llegar un viernes por la tarde a su apartamento. Las luces cálidas reflejadas en este piso pulido continuo..."</div>
@@ -1838,7 +1680,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.heart}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">PASO 2 · CONECTAR CON LA FAMILIA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Sentir la tranquilidad de caminar descalzo, ver a sus hijos jugar y recibir a sus amigos sabiendo que cada rincón refleja su esfuerzo y buen gusto."</div>
@@ -1846,7 +1688,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%);">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">PASO 3 · PREGUNTA DE COMPROMISO</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"¿No es exactamente esta la sensación de paz y elegancia que quería para su nuevo hogar?"</div>
@@ -1854,24 +1696,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 25: CIERRE POR SEGURIDAD ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 25: CIERRE POR SEGURIDAD Y RESPALDO
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 25: CIERRE POR SEGURIDAD ==================== -->
       <section class="slide" data-slide="25">
-        
-        <div class="slide-meta">
-          <div class="slide-num">25</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 25)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CIERRE POR <span class="gold-gradient">SEGURIDAD Y RESPALDO</span></h2>
@@ -1880,7 +1712,7 @@
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/closing_handshake.webp" alt="Alianza de Confianza" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'closing_handshake')}" alt="Alianza de Confianza" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Garantía Alfadekor</span>
@@ -1890,7 +1722,7 @@
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.shieldCheck}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">PILAR 1 · LOTE ÚNICO CERTIFICADO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Apartamos hoy mismo la totalidad de sus metros cuadrados de un solo lote de producción para asegurar tonalidad 100% homogénea."</div>
@@ -1898,7 +1730,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">PILAR 2 · SOPORTE DIRECTO EN OBRA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Le enviamos a su instalador la ficha técnica oficial con el tipo de llana y pegante exacto. No lo dejamos solo en ningún momento del proceso."</div>
@@ -1906,7 +1738,7 @@
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%);">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.check}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">LA PREGUNTA DEFINITIVA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Si este fuera el piso para mi propia casa, tomaría exactamente esta decisión. ¿Preparamos la orden para asegurar su lote de inmediato?"</div>
@@ -1914,24 +1746,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 26: VENTA CRUZADA ALFADEKOR ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 26: VENTA CRUZADA ALFADEKOR (KIT COMPLETO)
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 26: VENTA CRUZADA ALFADEKOR ==================== -->
       <section class="slide" data-slide="26">
-        
-        <div class="slide-meta">
-          <div class="slide-num">26</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 26)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">VENTA CRUZADA: <span class="gold-gradient">KIT DE INSTALACIÓN PERFECTA</span></h2>
@@ -1941,7 +1763,7 @@
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:32px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <!-- LEFT: Real Product Pack Hero Image -->
           <div style="border-radius:14px; overflow:hidden; border:1.5px solid var(--gold-primary); position:relative; box-shadow:0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.25);">
-            <img src="assets/images/cross_selling_pack.webp" alt="Kit Instalación Alfadekor" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'cross_selling_pack')}" alt="Kit Instalación Alfadekor" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.95) 0%, rgba(8,10,16,0.4) 40%, transparent 70%);"></div>
             
             <div style="position:absolute; top:20px; left:20px;">
@@ -1965,7 +1787,7 @@
             <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.layers}</div>
                   <span class="card-pillar-tag">Producto 01</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Pegante C2TES2</h4>
@@ -1978,7 +1800,7 @@
             <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.droplet}</div>
                   <span class="card-pillar-tag">Producto 02</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Boquilla Epóxica</h4>
@@ -1991,7 +1813,7 @@
             <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.grid}</div>
                   <span class="card-pillar-tag">Producto 03</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Cuñas y Clips</h4>
@@ -2004,7 +1826,7 @@
             <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.shield}</div>
                   <span class="card-pillar-tag">Producto 04</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Sellador Nano</h4>
@@ -2017,7 +1839,7 @@
             <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+                  <div class="luxury-icon-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.sparkles}</div>
                   <span class="card-pillar-tag">Producto 05</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Detergente Ácido</h4>
@@ -2030,7 +1852,7 @@
             <div class="card-glass spotlight-card anim-2 gold-active-card" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                  <div class="luxury-icon-disc core-disc" style="width:50px; height:50px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+                  <div class="luxury-icon-disc core-disc" style="width:50px; height:50px; margin-bottom:0;">${ICONS.award}</div>
                   <span class="card-pillar-tag">Producto 06</span>
                 </div>
                 <h4 class="card-pillar-title" style="font-size:20px; margin-bottom:4px;">Perfiles Remate</h4>
@@ -2040,24 +1862,11 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 27: EL PROCESO DE VENTA PERFECTO ==================== -->
+    `<!-- ==================== SLIDE 27: EL PROCESO DE VENTA PERFECTO ==================== -->
       <section class="slide" data-slide="27">
-        
-        <div class="slide-meta">
-          <div class="slide-num">27</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 27)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">EL PROCESO DE <span class="gold-gradient">VENTA PERFECTO</span></h2>
@@ -2069,7 +1878,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 17 2 2a1 1 0 0 0 1.4 0l4.3-4.3a1 1 0 0 0 0-1.4l-2-2"/><path d="m3 11 7.7 7.7a1 1 0 0 0 1.4 0L21 9.8a2 2 0 0 0 0-2.8l-1.4-1.4a2 2 0 0 0-2.8 0L9.4 13"/><path d="m7 7 3-3a1 1 0 0 1 1.4 0l2 2"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.handshakeIcon}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 01</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Saludo Cálido</h3>
@@ -2084,7 +1893,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.search}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 02</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Preguntas Clave</h3>
@@ -2099,7 +1908,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.eye}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 03</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Detectar Necesidad</h3>
@@ -2114,7 +1923,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.layers}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 04</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">3 Escenarios</h3>
@@ -2129,7 +1938,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc core-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+                <div class="luxury-icon-disc core-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.award}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 05</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Método CBR</h3>
@@ -2144,7 +1953,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.shield}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 06</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Objeciones</h3>
@@ -2159,7 +1968,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.check}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 07</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Cierre Seguro</h3>
@@ -2174,7 +1983,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="padding:22px 20px;">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                <div class="luxury-icon-disc" style="width:54px; height:54px; margin-bottom:0;">${ICONS.trending}</div>
                 <span class="s30-pillar-tag" style="margin-bottom:0;">Paso 08</span>
               </div>
               <h3 class="s30-pillar-title" style="font-size:22px; margin-top:12px;">Venta Cruzada</h3>
@@ -2191,24 +2000,14 @@
             "Los mejores vendedores siguen procesos rigurosos, no improvisan."
           </span>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 28: CASO PRÁCTICO INTERACTIVO ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 28: CASO PRÁCTICO INTERACTIVO (APTO 90M²)
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 28: CASO PRÁCTICO INTERACTIVO ==================== -->
       <section class="slide" data-slide="28">
-        
-        <div class="slide-meta">
-          <div class="slide-num">28</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 28)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CASO PRÁCTICO: <span class="gold-gradient">APARTAMENTO 90M²</span></h2>
@@ -2217,7 +2016,7 @@
 
         <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="assets/images/apartamento_65m2.webp" alt="Plano Arquitectónico" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'apartamento_65m2')}" alt="Plano Arquitectónico" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Caso de Estudio</span>
@@ -2228,7 +2027,7 @@
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px;">
             <div class="card-glass spotlight-card" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.home}</div>
                 <span class="card-pillar-tag">Metraje Total</span>
                 <h3 class="card-pillar-title" style="font-size:22px;">90 m² Reales</h3>
                 <div class="card-pillar-badge">+10% Desperdicio (99 m²)</div>
@@ -2238,7 +2037,7 @@
 
             <div class="card-glass spotlight-card" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.layers}</div>
                 <span class="card-pillar-tag">Formato Óptimo</span>
                 <h3 class="card-pillar-title" style="font-size:22px;">60x120 Rectificado</h3>
                 <div class="card-pillar-badge">Calacatta Gold + Madera</div>
@@ -2248,7 +2047,7 @@
 
             <div class="card-glass spotlight-card" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+                <div class="luxury-icon-disc">${ICONS.grid}</div>
                 <span class="card-pillar-tag">Kit Instalación</span>
                 <h3 class="card-pillar-title" style="font-size:22px;">Kit Completo</h3>
                 <div class="card-pillar-badge">20 Bolsas Pegante C2</div>
@@ -2258,7 +2057,7 @@
 
             <div class="card-glass spotlight-card gold-active-card" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+                <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
                 <span class="card-pillar-tag">Cierre Asesor</span>
                 <h3 class="card-pillar-title" style="font-size:22px;">Garantía Total</h3>
                 <div class="card-pillar-badge">Entrega Inmediata</div>
@@ -2267,24 +2066,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 29: EVALUACIÓN FINAL ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 29: EVALUACIÓN FINAL Y CERTIFICACIÓN
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 29: EVALUACIÓN FINAL ==================== -->
       <section class="slide" data-slide="29">
-        
-        <div class="slide-meta">
-          <div class="slide-num">29</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 29)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">EVALUACIÓN FINAL Y <span class="gold-gradient">CERTIFICACIÓN</span></h2>
@@ -2294,7 +2083,7 @@
         <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:20px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.award}</div>
               <span class="card-pillar-tag">Módulo 01</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Dominio Técnico</h3>
               <div class="card-pillar-badge">Absorción, PEI & Mohs</div>
@@ -2304,7 +2093,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.search}</div>
               <span class="card-pillar-tag">Módulo 02</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Diagnóstico 30s</h3>
               <div class="card-pillar-badge">Preguntas Maestras</div>
@@ -2314,7 +2103,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <span class="card-pillar-tag">Módulo 03</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Método CBR</h3>
               <div class="card-pillar-badge">Transformación Real</div>
@@ -2324,7 +2113,7 @@
 
           <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shield}</div>
               <span class="card-pillar-tag">Módulo 04</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Desarme Objeción</h3>
               <div class="card-pillar-badge">Precio & Competencia</div>
@@ -2334,7 +2123,7 @@
 
           <div class="card-glass spotlight-card gold-active-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.check}</div>
               <span class="card-pillar-tag">Módulo 05</span>
               <h3 class="card-pillar-title" style="font-size:22px;">Cierre & Kit</h3>
               <div class="card-pillar-badge">Venta Cruzada 100%</div>
@@ -2342,24 +2131,14 @@
             <p class="card-pillar-desc" style="font-size:18px;">Cierre con respaldo total y venta completa de pegantes y niveladores profesionales.</p>
           </div>
         </div>
-      </section>
+      </section>`,
 
-<!-- ==================== SLIDE 30: ADN DEL VENDEDOR ALFADEKOR ==================== -->
+    // -------------------------------------------------------------
+    // SLIDE 30: ADN DEL VENDEDOR ALFADEKOR (5 PILARES DE ORO)
+    // -------------------------------------------------------------
+    `<!-- ==================== SLIDE 30: ADN DEL VENDEDOR ALFADEKOR ==================== -->
       <section class="slide" data-slide="30">
-        
-        <div class="slide-meta">
-          <div class="slide-num">30</div>
-          <div class="brand-logo-slot">
-    <div class="brand-logo-wrap" style="">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFA DEKOR" class="header-logo-medallion">
-      <div style="display:flex; flex-direction:column; justify-content:center; text-align:left; line-height:1.15;">
-        <span class="brand-name-text">ALFA DEKOR</span>
-        <span class="brand-sub-text">IMPORTADORES DIRECTOS</span>
-      </div>
-    </div>
-  </div>
-        </div>
-  
+        ${getHeader(isModular, 30)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">ADN DEL VENDEDOR <span class="gold-gradient">ALFADEKOR</span></h2>
@@ -2370,7 +2149,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 01</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
               <h3 class="s30-pillar-title">Visión Transformadora</h3>
               <div class="s30-pillar-badge">No vende cajas de baldosas</div>
               <p class="s30-pillar-desc">
@@ -2386,7 +2165,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 02</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.users}</div>
               <h3 class="s30-pillar-title">Empatía Consultiva</h3>
               <div class="s30-pillar-badge">Escucha el 80% del tiempo</div>
               <p class="s30-pillar-desc">
@@ -2402,7 +2181,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 03 · Núcleo</div>
-              <div class="luxury-icon-disc core-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
               <h3 class="s30-pillar-title">Dominio Absoluto</h3>
               <div class="s30-pillar-badge">Autoridad técnica Alfadekor</div>
               <p class="s30-pillar-desc">
@@ -2418,7 +2197,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 04</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.shield}</div>
               <h3 class="s30-pillar-title">Solidez & Respaldo</h3>
               <div class="s30-pillar-badge">Disipa cualquier objeción</div>
               <p class="s30-pillar-desc">
@@ -2434,7 +2213,7 @@
           <div class="s30-pillar-card spotlight-card tilt-card anim-2" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="s30-pillar-tag">Pilar 05</div>
-              <div class="luxury-icon-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 17 2 2a1 1 0 0 0 1.4 0l4.3-4.3a1 1 0 0 0 0-1.4l-2-2"/><path d="m3 11 7.7 7.7a1 1 0 0 0 1.4 0L21 9.8a2 2 0 0 0 0-2.8l-1.4-1.4a2 2 0 0 0-2.8 0L9.4 13"/><path d="m7 7 3-3a1 1 0 0 1 1.4 0l2 2"/></svg></div>
+              <div class="luxury-icon-disc">${ICONS.handshakeIcon}</div>
               <h3 class="s30-pillar-title">Cierre de Alianza</h3>
               <div class="s30-pillar-badge">Solución integral garantizada</div>
               <p class="s30-pillar-desc">
@@ -2447,7 +2226,383 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>`
+  ].join('\n\n');
+}
+
+// -------------------------------------------------------------
+// HTML Document Template Builder
+// -------------------------------------------------------------
+function buildCompleteHTML(isModular) {
+  const slidesHtml = generateAll30Slides(isModular);
+  const emblemHeaderSrc = isModular ? 'assets/icons/logo_symbol_medallion.webp' : b64.logo_symbol_medallion;
+
+  const reactbitsJs = `
+class ReactBitsFX {
+  constructor() {
+    this.initSpotlight();
+    this.initTilt();
+  }
+
+  initSpotlight() {
+    document.querySelectorAll('.spotlight-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', \`\${x}px\`);
+        card.style.setProperty('--mouse-y', \`\${y}px\`);
+      });
+    });
+  }
+
+  initTilt() {
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = \`perspective(1000px) rotateX(\${-y * 8}deg) rotateY(\${x * 8}deg) translateY(-4px)\`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  window.reactBitsFX = new ReactBitsFX();
+});
+`;
+
+  const deckEngineJs = `
+const SLIDE_TITLES = ${JSON.stringify(SLIDE_TITLES, null, 2)};
+const ICONS = {
+  volume: \`${ICONS.volume}\`,
+  volumeX: \`${ICONS.volumeX}\`
+};
+
+class DeckEngine {
+  constructor() {
+    this.currentSlide = 0;
+    this.slides = Array.from(document.querySelectorAll('.slide'));
+    this.totalSlides = this.slides.length;
+    this.stage = document.getElementById('slideStage');
+    this.counter = document.getElementById('slideCounter');
+    this.progressBar = document.getElementById('progressBar');
+    this.gridModal = document.getElementById('gridModal');
+    this.gridContainer = document.getElementById('gridCardsContainer');
+    this.helpModal = document.getElementById('helpModal');
+    this.audioBtn = document.getElementById('audioBtn');
+    this.audioEnabled = true;
+
+    this.audioCtx = null;
+    this.initAudio();
+    this.initScaling();
+    this.buildGrid();
+    this.initEvents();
+    this.updateSlide(0);
+  }
+
+  initAudio() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (AudioCtx) {
+      this.audioCtx = new AudioCtx();
+    }
+  }
+
+  playClick() {
+    if (!this.audioEnabled || !this.audioCtx) return;
+    try {
+      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(520, this.audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.04, this.audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.05);
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+      osc.start();
+      osc.stop(this.audioCtx.currentTime + 0.05);
+    } catch(e) {}
+  }
+
+  initScaling() {
+    const baseW = 1920;
+    const baseH = 1080;
+    const footerH = 65;
+
+    const scaleStage = () => {
+      const isFull = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      const availableW = window.innerWidth;
+      const availableH = isFull ? window.innerHeight : window.innerHeight - footerH;
+
+      const scale = Math.min(availableW / baseW, availableH / baseH);
+      if (this.stage) {
+        this.stage.style.transform = \`scale(\${scale})\`;
+      }
+    };
+
+    window.addEventListener('resize', scaleStage);
+    document.addEventListener('fullscreenchange', scaleStage);
+    document.addEventListener('webkitfullscreenchange', scaleStage);
+    scaleStage();
+  }
+
+  updateSlide(newIdx, direction = 'next') {
+    if (newIdx < 0 || newIdx >= this.totalSlides) return;
+
+    const prevSlide = this.slides[this.currentSlide];
+    const nextSlide = this.slides[newIdx];
+
+    if (prevSlide && prevSlide !== nextSlide) {
+      prevSlide.className = \`slide \${direction === 'next' ? 'slide-exit-next' : 'slide-exit-prev'}\`;
+      setTimeout(() => {
+        prevSlide.className = 'slide';
+      }, 500);
+    }
+
+    if (nextSlide) {
+      nextSlide.className = \`slide active \${direction === 'next' ? 'slide-enter-next' : 'slide-enter-prev'}\`;
+      void nextSlide.offsetWidth;
+      nextSlide.className = 'slide active';
+    }
+
+    this.currentSlide = newIdx;
+    this.playClick();
+
+    if (this.counter) {
+      const curStr = (this.currentSlide + 1) < 10 ? '0' + (this.currentSlide + 1) : (this.currentSlide + 1);
+      const totStr = this.totalSlides < 10 ? '0' + this.totalSlides : this.totalSlides;
+      this.counter.textContent = \`\${curStr} / \${totStr}\`;
+    }
+
+    if (this.progressBar) {
+      const pct = ((this.currentSlide + 1) / this.totalSlides) * 100;
+      this.progressBar.style.width = \`\${pct}%\`;
+    }
+
+    this.updateGridActive();
+  }
+
+  next() {
+    if (this.currentSlide < this.totalSlides - 1) {
+      this.updateSlide(this.currentSlide + 1, 'next');
+    }
+  }
+
+  prev() {
+    if (this.currentSlide > 0) {
+      this.updateSlide(this.currentSlide - 1, 'prev');
+    }
+  }
+
+  goTo(idx) {
+    if (idx >= 0 && idx < this.totalSlides) {
+      const dir = idx > this.currentSlide ? 'next' : 'prev';
+      this.updateSlide(idx, dir);
+      this.closeGrid();
+    }
+  }
+
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+
+  toggleAudio() {
+    this.audioEnabled = !this.audioEnabled;
+    if (this.audioBtn) {
+      this.audioBtn.innerHTML = this.audioEnabled ? ICONS.volume : ICONS.volumeX;
+      this.audioBtn.title = this.audioEnabled ? 'Silenciar Audio (M)' : 'Activar Audio (M)';
+    }
+  }
+
+  toggleGrid() {
+    if (!this.gridModal) return;
+    const isOpen = this.gridModal.classList.contains('open');
+    if (isOpen) {
+      this.closeGrid();
+    } else {
+      this.gridModal.classList.add('open');
+    }
+  }
+
+  closeGrid() {
+    if (this.gridModal) this.gridModal.classList.remove('open');
+  }
+
+  toggleHelp() {
+    if (!this.helpModal) return;
+    this.helpModal.classList.toggle('open');
+  }
+
+  buildGrid() {
+    if (!this.gridContainer) return;
+    this.gridContainer.innerHTML = '';
+    this.slides.forEach((slide, idx) => {
+      const card = document.createElement('div');
+      card.className = 'grid-thumb-card';
+      const numStr = (idx + 1) < 10 ? '0' + (idx + 1) : (idx + 1);
+      const title = SLIDE_TITLES[idx] || \`Lámina \${numStr}\`;
+
+      card.innerHTML = \`
+        <div style="font-family:var(--font-serif); font-size:18px; font-weight:800; color:var(--gold-primary); margin-bottom:6px;">
+          Lámina \${numStr}
+        </div>
+        <div style="font-size:13px; color:#ffffff; line-height:1.3; font-weight:600;">
+          \${title}
+        </div>
+      \`;
+
+      card.addEventListener('click', () => {
+        this.goTo(idx);
+      });
+
+      this.gridContainer.appendChild(card);
+    });
+  }
+
+  updateGridActive() {
+    if (!this.gridContainer) return;
+    const cards = this.gridContainer.querySelectorAll('.grid-thumb-card');
+    cards.forEach((c, i) => {
+      if (i === this.currentSlide) {
+        c.style.borderColor = 'var(--gold-primary)';
+        c.style.background = 'rgba(212, 175, 55, 0.15)';
+      } else {
+        c.style.borderColor = 'var(--gold-border)';
+        c.style.background = 'rgba(14, 18, 28, 0.9)';
+      }
+    });
+  }
+
+  initEvents() {
+    window.addEventListener('keydown', (e) => {
+      if (this.helpModal && this.helpModal.classList.contains('open')) {
+        if (e.key === 'Escape' || e.key === '?') {
+          this.toggleHelp();
+          return;
+        }
+      }
+
+      if (this.gridModal && this.gridModal.classList.contains('open')) {
+        if (e.key === 'Escape' || e.key.toLowerCase() === 'g') {
+          this.closeGrid();
+          return;
+        }
+      }
+
+      switch (e.key) {
+        case 'ArrowRight':
+        case ' ':
+          e.preventDefault();
+          this.next();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          this.prev();
+          break;
+        case 'f':
+        case 'F':
+          e.preventDefault();
+          this.toggleFullscreen();
+          break;
+        case 'g':
+        case 'G':
+          e.preventDefault();
+          this.toggleGrid();
+          break;
+        case 'm':
+        case 'M':
+          e.preventDefault();
+          this.toggleAudio();
+          break;
+        case '?':
+          e.preventDefault();
+          this.toggleHelp();
+          break;
+        case 'Escape':
+          this.closeGrid();
+          if (this.helpModal) this.helpModal.classList.remove('open');
+          break;
+      }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 60) this.next();
+      if (touchEndX > touchStartX + 60) this.prev();
+    }, { passive: true });
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  window.deck = new DeckEngine();
+});
+`;
+
+  // Write JS to repo
+  fs.writeFileSync(path.join(jsDir, 'reactbits-fx.js'), reactbitsJs.trim(), 'utf8');
+  fs.writeFileSync(path.join(jsDir, 'deck-engine.js'), deckEngineJs.trim(), 'utf8');
+
+  const mainCss = fs.readFileSync(path.join(cssDir, 'main.css'), 'utf8');
+
+  const headStyles = isModular ? `
+  <link rel="stylesheet" href="css/main.css">
+` : `
+  <style>
+${mainCss}
+  </style>
+`;
+
+  const scriptTags = isModular ? `
+  <script src="js/reactbits-fx.js"></script>
+  <script src="js/deck-engine.js"></script>
+` : `
+  <script>
+${reactbitsJs}
+
+${deckEngineJs}
+  </script>
+`;
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALFADEKOR · Maestría en Ventas de Porcelanatos y Revestimientos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  ${headStyles}
+</head>
+<body>
+  <!-- Top Progress Bar -->
+  <div class="top-progress-track">
+    <div class="top-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Main 16:9 Presentation Stage -->
+  <main class="presentation-wrapper">
+    <div class="slide-stage" id="slideStage">
+      <!-- Ambient Aurora Background Effect -->
+      <div class="ambient-aurora"></div>
+
+${slidesHtml}
 
     </div>
   </main>
@@ -2455,7 +2610,7 @@
   <!-- Bottom Navigation Dock (Fixed 65px footer bar with 0% overlap) -->
   <footer class="fixed-footer-bar">
     <div class="footer-left">
-      <img src="assets/icons/logo_symbol_medallion.webp" alt="ALFADEKOR" style="width:36px; height:36px; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(212,175,55,0.5)); flex-shrink:0;">
+      <img src="${emblemHeaderSrc}" alt="ALFADEKOR" style="width:36px; height:36px; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(212,175,55,0.5)); flex-shrink:0;">
       <span style="font-family:var(--font-serif); font-size:16px; font-weight:800; letter-spacing:2px; color:var(--gold-primary); margin-left:14px;">
         ALFADEKOR · MAESTRÍA EN VENTAS
       </span>
@@ -2463,28 +2618,28 @@
 
     <div class="footer-center">
       <button class="nav-btn" onclick="deck.prev()" title="Lámina Anterior (←)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        ${ICONS.chevronLeft}
       </button>
       <div class="slide-counter-badge" id="slideCounter">01 / 30</div>
       <button class="nav-btn" onclick="deck.next()" title="Siguiente Lámina (→ / Espacio)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        ${ICONS.chevronRight}
       </button>
     </div>
 
     <div class="footer-right">
       <button class="fullscreen-pill-btn" onclick="deck.toggleFullscreen()" id="fsBtn" title="Pantalla Completa (F)">
-        <span class="fs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span>
+        <span class="fs-icon">${ICONS.maximize}</span>
         <span class="fs-text">PANTALLA COMPLETA</span>
         <span class="fs-badge">F</span>
       </button>
       <button class="nav-btn" onclick="deck.toggleGrid()" title="Vista Cuadrícula (G)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        ${ICONS.grid}
       </button>
       <button class="nav-btn" onclick="deck.toggleAudio()" id="audioBtn" title="Efectos de Audio (M)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        ${ICONS.volume}
       </button>
       <button class="nav-btn" onclick="deck.toggleHelp()" title="Atajos de Teclado (?)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        ${ICONS.help}
       </button>
     </div>
   </footer>
@@ -2501,7 +2656,7 @@
         </div>
       </div>
       <button class="nav-btn" onclick="deck.closeGrid()" title="Cerrar (Esc)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        ${ICONS.cross}
       </button>
     </div>
     <div class="grid-cards-container" id="gridCardsContainer"></div>
@@ -2515,7 +2670,7 @@
           ATAJOS DE TECLADO
         </h3>
         <button class="nav-btn" onclick="deck.toggleHelp()" style="width:36px; height:36px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          ${ICONS.cross}
         </button>
       </div>
       <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; font-size:16px;">
@@ -2547,9 +2702,21 @@
     </div>
   </div>
 
-  
-  <script src="js/reactbits-fx.js"></script>
-  <script src="js/deck-engine.js"></script>
-
+  ${scriptTags}
 </body>
-</html>
+</html>`;
+}
+
+// Build both formats
+console.log('Building Modular index.html...');
+const modularHtml = buildCompleteHTML(true);
+fs.writeFileSync(path.join(repoDir, 'index.html'), modularHtml, 'utf8');
+console.log('Modular index.html written to repo!');
+
+console.log('Building Standalone HTML...');
+const standaloneHtml = buildCompleteHTML(false);
+fs.writeFileSync(standaloneOut, standaloneHtml, 'utf8');
+fs.writeFileSync(path.join(repoDir, 'Capacitacion-Alfadekor-Maestria-en-Ventas.html'), standaloneHtml, 'utf8');
+console.log('Standalone HTML written successfully to both destinations!');
+
+console.log('ALL 30 SLIDES SUCCESSFULLY BUILT WITH LUXURY ICON DISCS & ENLARGED LOGOS!');

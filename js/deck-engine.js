@@ -150,11 +150,39 @@ class DeckEngine {
     });
   }
 
-  updateSlide(index) {
+  updateSlide(index, direction = null) {
     if (index < 0 || index >= this.totalSlides) return;
-    this.slides.forEach((s, idx) => {
-      s.classList.toggle('active', idx === index);
-    });
+    const oldSlide = this.slides[this.currentSlide];
+    const newSlide = this.slides[index];
+
+    if (!direction && oldSlide && newSlide && this.currentSlide !== index) {
+      direction = index > this.currentSlide ? 'next' : 'prev';
+    }
+
+    if (oldSlide && oldSlide !== newSlide) {
+      oldSlide.classList.remove('active', 'slide-enter-next', 'slide-enter-prev');
+      if (direction) {
+        oldSlide.classList.add(`slide-exit-${direction}`);
+        setTimeout(() => {
+          oldSlide.classList.remove(`slide-exit-${direction}`);
+        }, 500);
+      }
+    }
+
+    if (newSlide) {
+      if (direction) {
+        newSlide.classList.remove('slide-exit-next', 'slide-exit-prev');
+        newSlide.classList.add(`slide-enter-${direction}`);
+        void newSlide.offsetWidth; // Force browser reflow
+        requestAnimationFrame(() => {
+          newSlide.classList.remove(`slide-enter-${direction}`);
+          newSlide.classList.add('active');
+        });
+      } else {
+        newSlide.classList.add('active');
+      }
+    }
+
     this.currentSlide = index;
     const padNum = String(index + 1).padStart(2, '0');
     if (this.counter) this.counter.textContent = `${padNum} / ${this.totalSlides}`;
@@ -179,14 +207,14 @@ class DeckEngine {
   next() {
     if (this.currentSlide < this.totalSlides - 1) {
       this.playClick();
-      this.updateSlide(this.currentSlide + 1);
+      this.updateSlide(this.currentSlide + 1, 'next');
     }
   }
 
   prev() {
     if (this.currentSlide > 0) {
       this.playClick();
-      this.updateSlide(this.currentSlide - 1);
+      this.updateSlide(this.currentSlide - 1, 'prev');
     }
   }
 

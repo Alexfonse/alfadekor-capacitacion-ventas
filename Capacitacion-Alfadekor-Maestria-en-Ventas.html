@@ -589,16 +589,17 @@ html, body {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    color-adjust: exact !important;
   }
 
   html, body {
     width: 100% !important;
     height: auto !important;
     overflow: visible !important;
-    background: #080a10 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
     margin: 0 !important;
     padding: 0 !important;
+    font-family: 'Montserrat', system-ui, sans-serif !important;
   }
 
   /* Ocultar elementos de interfaz */
@@ -630,10 +631,10 @@ html, body {
     border: none !important;
     border-radius: 0 !important;
     overflow: visible !important;
-    background: transparent !important;
+    background: #ffffff !important;
   }
 
-  /* Cada slide = exactamente 1 página carta horizontal */
+  /* Cada slide = exactamente 1 página carta horizontal con margen inferior de seguridad */
   .slide {
     display: flex !important;
     position: relative !important;
@@ -652,20 +653,122 @@ html, body {
     break-after: page !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    padding: 36px 55px !important;
-    background: #080a10 !important;
-    border: none !important;
-    box-shadow: none !important;
+    padding: 20px 45px 55px 45px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
     overflow: hidden !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
   }
 
-  /* Evitar page break dentro de una card */
-  .card-glass,
-  .s30-pillar-card,
-  .spotlight-card {
+  .slide > div:not(.slide-meta) {
+    zoom: 0.81 !important;
+  }
+
+  .slide-meta {
+    margin-bottom: 8px !important;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, span, div, strong, em, b, i, a, li {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  .title-large {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 30px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .title-sub {
+    color: #334155 !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .gold-gradient {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+  }
+
+  .slide-num {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 24px !important;
+  }
+
+  .brand-name-text {
+    color: #000000 !important;
+    font-weight: 900 !important;
+  }
+
+  .brand-sub-text {
+    color: #475569 !important;
+    font-weight: 700 !important;
+  }
+
+  .card-glass, .s30-pillar-card, .spotlight-card {
+    background: #ffffff !important;
+    border: 2px solid #64748b !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+    color: #000000 !important;
+    padding: 16px 18px !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+  }
+
+  .s30-pillar-title, .card-pillar-title {
+    color: #000000 !important;
+    font-weight: 800 !important;
+    font-size: 19px !important;
+  }
+
+  .s30-pillar-desc, .card-pillar-desc {
+    color: #1e293b !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .s30-pillar-badge, .card-pillar-badge {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1.5px solid #94a3b8 !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+  }
+
+  .s30-pillar-tag, .card-pillar-tag, .gold-ribbon {
+    background: #e2e8f0 !important;
+    color: #000000 !important;
+    border: 1.5px solid #475569 !important;
+    font-weight: 800 !important;
+  }
+
+  .luxury-icon-disc {
+    background: #f1f5f9 !important;
+    border: 2px solid #475569 !important;
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .luxury-icon-disc svg {
+    stroke: #000000 !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  div[style*="background:rgba(212,175,55"] {
+    background: #f8fafc !important;
+    border: 1.5px solid #64748b !important;
+    padding: 8px 10px !important;
+    margin-top: 8px !important;
   }
 
   /* Revelar todas las animaciones */
@@ -685,6 +788,7 @@ html, body {
   /* Asegura que las imágenes se muestren */
   img {
     max-width: 100% !important;
+    border-radius: 6px !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }

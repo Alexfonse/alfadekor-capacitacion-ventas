@@ -2569,6 +2569,9 @@
       <button class="nav-btn" onclick="deck.toggleGrid()" title="Vista Cuadrícula (G)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       </button>
+      <button class="nav-btn" onclick="printPresentation()" title="Imprimir Presentación (P)" style="position:relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
       <button class="nav-btn" onclick="deck.toggleAudio()" id="audioBtn" title="Efectos de Audio (M)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
       </button>
@@ -2623,6 +2626,10 @@
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Ver cuadrícula</span>
           <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">G</kbd>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <span style="color:var(--text-sub);">Imprimir presentación</span>
+          <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">P</kbd>
         </div>
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Silenciar audio</span>

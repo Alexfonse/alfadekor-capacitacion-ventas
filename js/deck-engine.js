@@ -301,6 +301,50 @@ class DeckEngine {
   }
 }
 
+
+function printPresentation() {
+  // Temporarily reveal ALL slides for print
+  const slides = document.querySelectorAll('.slide');
+  const originalClasses = [];
+  slides.forEach((slide, idx) => {
+    originalClasses.push(slide.className);
+    // Make all slides visible
+    slide.classList.remove('slide-exit-next', 'slide-exit-prev');
+    if (!slide.classList.contains('active')) {
+      slide.classList.add('print-reveal');
+    }
+    // Reveal all animated elements
+    slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+
+  window.print();
+
+  // Restore original state after print dialog
+  setTimeout(() => {
+    slides.forEach((slide, idx) => {
+      slide.className = originalClasses[idx];
+      // Restore animations for non-active slides (visual only)
+      if (!slide.classList.contains('active')) {
+        slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+          el.style.opacity = '';
+          el.style.transform = '';
+        });
+      }
+    });
+  }, 1000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   window.deck = new DeckEngine();
+
+  // Keyboard shortcut P for print
+  window.addEventListener('keydown', (e) => {
+    if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      printPresentation();
+    }
+  });
 });

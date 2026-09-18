@@ -566,3 +566,141 @@ html, body {
   transition: width 0.35s ease;
 }
 `
+
+/* ============================================================
+   PRINT STYLES - Impresión profesional de las 30 láminas
+   ============================================================ */
+@media print {
+  /* --- Reset para impresión --- */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ocultar elementos de interfaz */
+  .top-progress-track,
+  .fixed-footer-bar,
+  .grid-modal,
+  .help-modal,
+  .ambient-aurora,
+  .print-btn-bar {
+    display: none !important;
+  }
+
+  /* El wrapper no es fixed en print */
+  .presentation-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Stage no es escalado en print */
+  .slide-stage {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  /* Cada slide = una página */
+  .slide {
+    display: flex !important;
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 95vh !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    padding: 28mm 22mm !important;
+    background: #080a10 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    flex-direction: column !important;
+  }
+
+  /* Evitar page break dentro de una card */
+  .card-glass,
+  .s30-pillar-card,
+  .spotlight-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Revelar todas las animaciones */
+  .anim-1, .anim-2, .anim-3, .anim-4, .anim-5 {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* El último slide no necesita page-break */
+  .slide:last-of-type {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Asegura que las imágenes se muestren */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Tipografía de alta calidad en blanco/dorado sobre oscuro */
+  .title-large { font-size: 28pt !important; }
+  .title-sub { font-size: 13pt !important; }
+
+  /* Número de slide visible en print */
+  .slide-num {
+    font-size: 18pt !important;
+    color: var(--gold-primary) !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Header logo */
+  .slide-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Slides de transición (slide-exit, etc.) no se muestran */
+  .slide-exit-next,
+  .slide-exit-prev {
+    display: none !important;
+  }
+}
+
+.print-reveal {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+}

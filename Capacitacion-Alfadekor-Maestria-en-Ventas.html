@@ -577,6 +577,145 @@ html, body {
   transition: width 0.35s ease;
 }
 `
+
+/* ============================================================
+   PRINT STYLES - Impresión profesional de las 30 láminas
+   ============================================================ */
+@media print {
+  /* --- Reset para impresión --- */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ocultar elementos de interfaz */
+  .top-progress-track,
+  .fixed-footer-bar,
+  .grid-modal,
+  .help-modal,
+  .ambient-aurora,
+  .print-btn-bar {
+    display: none !important;
+  }
+
+  /* El wrapper no es fixed en print */
+  .presentation-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Stage no es escalado en print */
+  .slide-stage {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  /* Cada slide = una página */
+  .slide {
+    display: flex !important;
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 95vh !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    padding: 28mm 22mm !important;
+    background: #080a10 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    flex-direction: column !important;
+  }
+
+  /* Evitar page break dentro de una card */
+  .card-glass,
+  .s30-pillar-card,
+  .spotlight-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Revelar todas las animaciones */
+  .anim-1, .anim-2, .anim-3, .anim-4, .anim-5 {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* El último slide no necesita page-break */
+  .slide:last-of-type {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Asegura que las imágenes se muestren */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Tipografía de alta calidad en blanco/dorado sobre oscuro */
+  .title-large { font-size: 28pt !important; }
+  .title-sub { font-size: 13pt !important; }
+
+  /* Número de slide visible en print */
+  .slide-num {
+    font-size: 18pt !important;
+    color: var(--gold-primary) !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Header logo */
+  .slide-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Slides de transición (slide-exit, etc.) no se muestran */
+  .slide-exit-next,
+  .slide-exit-prev {
+    display: none !important;
+  }
+}
+
+.print-reveal {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  transform: none !important;
+}
+
   </style>
 
 </head>
@@ -3138,6 +3277,9 @@ html, body {
       <button class="nav-btn" onclick="deck.toggleGrid()" title="Vista Cuadrícula (G)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       </button>
+      <button class="nav-btn" onclick="printPresentation()" title="Imprimir Presentación (P)" style="position:relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
       <button class="nav-btn" onclick="deck.toggleAudio()" id="audioBtn" title="Efectos de Audio (M)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
       </button>
@@ -3192,6 +3334,10 @@ html, body {
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Ver cuadrícula</span>
           <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">G</kbd>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <span style="color:var(--text-sub);">Imprimir presentación</span>
+          <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">P</kbd>
         </div>
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Silenciar audio</span>
@@ -3550,8 +3696,52 @@ class DeckEngine {
   }
 }
 
+
+function printPresentation() {
+  // Temporarily reveal ALL slides for print
+  const slides = document.querySelectorAll('.slide');
+  const originalClasses = [];
+  slides.forEach((slide, idx) => {
+    originalClasses.push(slide.className);
+    // Make all slides visible
+    slide.classList.remove('slide-exit-next', 'slide-exit-prev');
+    if (!slide.classList.contains('active')) {
+      slide.classList.add('print-reveal');
+    }
+    // Reveal all animated elements
+    slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+
+  window.print();
+
+  // Restore original state after print dialog
+  setTimeout(() => {
+    slides.forEach((slide, idx) => {
+      slide.className = originalClasses[idx];
+      // Restore animations for non-active slides (visual only)
+      if (!slide.classList.contains('active')) {
+        slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+          el.style.opacity = '';
+          el.style.transform = '';
+        });
+      }
+    });
+  }, 1000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   window.deck = new DeckEngine();
+
+  // Keyboard shortcut P for print
+  window.addEventListener('keydown', (e) => {
+    if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      printPresentation();
+    }
+  });
 });
 
   </script>

@@ -744,70 +744,79 @@ function generateAll30Slides(isModular) {
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">FORMATOS PARA <span class="gold-gradient">CADA ESPACIO</span></h2>
-          <div class="title-sub anim-1">Cómo la Dimensión de la Placa Define la Percepción de Amplitud</div>
+          <div class="title-sub anim-1">Cómo la Dimensión de la Placa Define la Percepción de Amplitud y Lujo</div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:26px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <!-- 60x60 -->
-          <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.grid}</div>
-                <span style="font-family:var(--font-serif); font-size:32px; font-weight:800; color:var(--gold-primary);">60x60 cm</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'five_tile_textures')}" alt="Formato 60x60 cm" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="margin:0;">Formato Ágil</span>
+                  <span style="font-family:var(--font-serif); font-size:26px; font-weight:800; color:var(--gold-primary);">60x60 cm</span>
+                </div>
               </div>
-              <span class="card-pillar-tag">Formato Ágil</span>
-              <h3 class="card-pillar-title" style="font-size:26px; margin:10px 0 6px 0;">Formato Clásico Modular</h3>
-              <div class="card-pillar-badge" style="margin-bottom:12px;">Espacios Pequeños y Medianos</div>
-              <p class="card-pillar-desc" style="font-size:18px; line-height:1.45;">
-                Ideal para baños compactos, lavanderías, depósitos y remodelaciones con desniveles pronunciados. Fácil manipulación e instalación ágil por un solo instalador.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">Formato Clásico Modular</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Espacios Pequeños y Medianos</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                Ideal para baños compactos, lavanderías, depósitos y remodelaciones con desniveles pronunciados. Manipulación ágil e instalación rápida por un solo instalador.
               </p>
             </div>
-            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:14px 18px; border-radius:8px; font-size:17px; color:var(--text-muted);">
-              📏 <strong>Rendimiento:</strong> 0.36 m² por pieza · Menor desperdicio en cortes curvos.
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:12px 16px; border-radius:8px; font-size:16px; color:var(--text-muted);">
+              📏 <strong>Rendimiento:</strong> 0.36 m² por pieza · Menor desperdicio en cortes perimetrales.
             </div>
           </div>
 
           <!-- 60x120 -->
-          <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.14) 0%, rgba(14,18,28,0.95) 100%); box-shadow:0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.2);">
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.14) 0%, rgba(14,18,28,0.95) 100%); box-shadow:0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.2);">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.maximize}</div>
-                <span style="font-family:var(--font-serif); font-size:36px; font-weight:900; color:var(--gold-light);">60x120 cm</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-primary); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'floor_plant_porcelain')}" alt="Formato 60x120 cm" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900; margin:0;">BEST SELLER</span>
+                  <span style="font-family:var(--font-serif); font-size:26px; font-weight:900; color:var(--gold-light);">60x120 cm</span>
+                </div>
               </div>
-              <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900;">BEST SELLER ALFADEKOR</span>
-              <h3 class="card-pillar-title" style="font-size:26px; margin:10px 0 6px 0;">El Estándar de Oro Actual</h3>
-              <div class="card-pillar-badge" style="margin-bottom:12px;">Salas, Comedores y Muros de Baño</div>
-              <p class="card-pillar-desc" style="font-size:18px; line-height:1.45;">
-                Multiplica la sensación de amplitud visual en un 40%. Reduce a la mitad la cantidad de juntas frente al 60x60. El balance perfecto entre costo, impacto escénico y logística en ascensores.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">El Estándar de Oro Actual</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Salas, Comedores y Muros de Baño</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                El formato preferido por arquitectos e interioristas. Reduce las juntas a la mitad respecto al 60x60, multiplicando la sensación visual de amplitud, luz y lujo continuo en cualquier área.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.2); border:1px solid var(--gold-primary); padding:14px 18px; border-radius:8px; font-size:18px; color:var(--gold-light);">
-              ⭐ <strong>Recomendación Asesor:</strong> El formato que enamora al cliente y maximiza la plusvalía.
+            <div style="background:rgba(212,175,55,0.18); border:1px solid var(--gold-primary); padding:12px 16px; border-radius:8px; font-size:16px; color:var(--gold-light); font-weight:600;">
+              ⭐ <strong>El Favorito:</strong> 0.72 m² por pieza · Eleva el avalúo de reventa inmobiliaria.
             </div>
           </div>
 
-          <!-- 120x240 / Slabs -->
-          <div class="card-glass spotlight-card anim-2" style="padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 120x240 -->
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
-                <span style="font-family:var(--font-serif); font-size:32px; font-weight:800; color:var(--gold-primary);">120x240 cm</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'tex_calacatta_slab')}" alt="Formato 120x240 cm" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="margin:0;">Ultra Formato</span>
+                  <span style="font-family:var(--font-serif); font-size:26px; font-weight:800; color:var(--gold-primary);">120x240 cm</span>
+                </div>
               </div>
-              <span class="card-pillar-tag">Ultra Formato</span>
-              <h3 class="card-pillar-title" style="font-size:26px; margin:10px 0 6px 0;">Maxi Slabs Monolíticos</h3>
-              <div class="card-pillar-badge" style="margin-bottom:12px;">Islas de Cocina, Muros y Fachadas</div>
-              <p class="card-pillar-desc" style="font-size:18px; line-height:1.45;">
-                La cúspide del diseño arquitectónico de lujo. Piezas piso-a-techo con cero juntas horizontales. Convierte muros enteros en verdaderas obras de arte de cuarzo y mármol.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">Maxi Slabs Monolíticos</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Islas de Cocina, Muros y Fachadas</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                La cúspide del diseño arquitectónico de lujo. Piezas piso-a-techo con cero juntas horizontales. Convierte muros enteros en verdaderas obras de arte de mármol y cuarzo.
               </p>
             </div>
-            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:14px 18px; border-radius:8px; font-size:17px; color:var(--text-muted);">
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:12px 16px; border-radius:8px; font-size:16px; color:var(--text-muted);">
               💎 <strong>Exclusividad:</strong> 2.88 m² por placa · Requiere ventosas y pegante C2TES2.
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    `<!-- ==================== SLIDE 10: ACABADOS Y CARACTERÍSTICAS ==================== -->
+    <!-- ==================== SLIDE 10: ACABADOS Y CARACTERÍSTICAS ==================== -->
       <section class="slide" data-slide="10">
         ${getHeader(isModular, 10)}
 
@@ -818,65 +827,74 @@ function generateAll30Slides(isModular) {
 
         <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:26px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <!-- Pulido Espejo -->
-          <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc">${ICONS.sparkles}</div>
-                <span class="card-pillar-tag">Alto Brillo</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'tex_calacatta_slab')}" alt="Acabado Pulido Nano" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="margin:0;">Alto Brillo</span>
+                  <span style="font-family:var(--font-serif); font-size:22px; font-weight:800; color:var(--gold-primary);">&gt;95 Gloss</span>
+                </div>
               </div>
-              <h3 class="card-pillar-title">Acabado Pulido Nano</h3>
-              <div class="card-pillar-badge">Reflejo Espejo >95 Gloss</div>
-              <p class="card-pillar-desc" style="margin-top:12px;">
-                Superficie tratada con sellado nanotecnológico que cierra los microporos y aporta luminosidad imponente. Ideal para salas de estar, comedores y halls principales.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">Acabado Pulido Nano</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Reflejo Espejo & Luminosidad</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                Superficie tratada con nanotecnología que sella los microporos y aporta luminosidad imponente. Rebota la luz natural, haciendo que salas y comedores se perciban el doble de amplios.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.1); border:1px solid var(--gold-border); padding:12px 16px; border-radius:8px; font-size:17px; color:var(--gold-light);">
-              ✨ <strong>Efecto:</strong> Rebota la luz natural, haciendo que los espacios se sientan dos veces más grandes.
+            <div style="background:rgba(212,175,55,0.1); border:1px solid var(--gold-border); padding:12px 16px; border-radius:8px; font-size:16px; color:var(--gold-light);">
+              ✨ <strong>Efecto:</strong> Rebota la luz natural; crea una sensación inmediata de hotel de 5 estrellas.
             </div>
           </div>
 
           <!-- Satinado / Mate -->
-          <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc">${ICONS.eye}</div>
-                <span class="card-pillar-tag">Tacto Sedoso</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'trend_travertino')}" alt="Acabado Satinado Mate" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="margin:0;">Tacto Sedoso</span>
+                  <span style="font-family:var(--font-serif); font-size:22px; font-weight:800; color:var(--gold-primary);">Lujo Silencioso</span>
+                </div>
               </div>
-              <h3 class="card-pillar-title">Acabado Satinado / Mate</h3>
-              <div class="card-pillar-badge">Elegancia Sobria & Confort</div>
-              <p class="card-pillar-desc" style="margin-top:12px;">
-                Tacto de seda sin reflejos directos. Oculta el polvo cotidiano, huellas y marcas de agua. La opción preferida por arquitectos contemporáneos para dormitorios y baños.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">Acabado Satinado / Mate</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Elegancia Sobria & Cero Huellas</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                Tacto de seda sin reflejos directos. Disimula el polvo cotidiano, huellas y marcas de agua. La opción preferida por diseñadores para dormitorios modernos, salas serenas y baños.
               </p>
             </div>
-            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:12px 16px; border-radius:8px; font-size:17px; color:#ffffff;">
-              🌿 <strong>Beneficio:</strong> Atmósfera cálida y relajada, perfecta para iluminación LED cálida.
+            <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:12px 16px; border-radius:8px; font-size:16px; color:#ffffff;">
+              🌿 <strong>Beneficio:</strong> Atmósfera cálida y relajada, perfecta para iluminación LED indirecta.
             </div>
           </div>
 
           <!-- Rústico / Antideslizante -->
-          <div class="card-glass spotlight-card anim-2" style="padding:28px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:22px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                <div class="luxury-icon-disc core-disc">${ICONS.shield}</div>
-                <span class="card-pillar-tag">Grip Seguro</span>
+              <div style="height:210px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:14px; position:relative;">
+                <img src="${getImgSrc(isModular, 'trend_wood')}" alt="Acabado Estructurado Rústico" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:flex-end;">
+                  <span class="card-pillar-tag" style="margin:0;">Grip Seguro</span>
+                  <span style="font-family:var(--font-serif); font-size:22px; font-weight:800; color:var(--gold-primary);">R10 – R11</span>
+                </div>
               </div>
-              <h3 class="card-pillar-title">Acabado Estructurado / Rústico</h3>
-              <div class="card-pillar-badge">Seguridad Antideslizante (R10–R11)</div>
-              <p class="card-pillar-desc" style="margin-top:12px;">
-                Microtextura con coeficiente de fricción elevado. Evita resbalones incluso con superficie completamente mojada. Imprescindible en duchas, terrazas y zonas de piscina.
+              <h3 class="card-pillar-title" style="font-size:24px; margin:4px 0 4px 0;">Estructurado / Rústico</h3>
+              <div class="card-pillar-badge" style="margin-bottom:10px;">Seguridad Antideslizante en Zonas Húmedas</div>
+              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">
+                Microtextura con coeficiente de fricción elevado. Evita resbalones incluso con superficie mojada con jabón. Imprescindible en platos de ducha, terrazas exteriores y zonas húmedas.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.1); border:1px solid var(--gold-border); padding:12px 16px; border-radius:8px; font-size:17px; color:var(--gold-light);">
+            <div style="background:rgba(212,175,55,0.1); border:1px solid var(--gold-border); padding:12px 16px; border-radius:8px; font-size:16px; color:var(--gold-light);">
               🛡️ <strong>Seguridad:</strong> Máxima protección contra accidentes en niños y adultos mayores.
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    // -------------------------------------------------------------
-    // SLIDE 11: APLICACIONES EN CADA AMBIENTE
-    // -------------------------------------------------------------
-    `<!-- ==================== SLIDE 11: APLICACIONES EN CADA AMBIENTE ==================== -->
+    <!-- ==================== SLIDE 11: APLICACIONES EN CADA AMBIENTE ==================== -->
       <section class="slide" data-slide="11">
         ${getHeader(isModular, 11)}
 
@@ -886,74 +904,104 @@ function generateAll30Slides(isModular) {
         </div>
 
         <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:18px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
-          <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 1. Sala -->
+          <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.home}</div>
-              <span class="card-pillar-tag">Living / Sala</span>
-              <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Salas y Comedores</h3>
-              <div class="card-pillar-badge" style="margin-bottom:10px;">60x120 Pulido o Satinado</div>
-              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">Luz continua, majestuosidad visual y resistencia al tránsito continuo de visitas familiares.</p>
+              <div style="height:175px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'penthouse_living_room')}" alt="Salas y Comedores" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Living / Sala</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">Salas y Comedores</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">60x120 Pulido o Satinado</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">Luz continua, majestuosidad visual y resistencia al tránsito continuo de visitas familiares.</p>
             </div>
             <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.2); padding:8px 10px; border-radius:6px; font-size:14px; color:var(--gold-light);">
               💡 <strong>Tip:</strong> Placas 60x120 con junta de 1mm para continuidad infinita.
             </div>
           </div>
 
-          <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 2. Baños -->
+          <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.droplet}</div>
-              <span class="card-pillar-tag">Zonas Húmedas</span>
-              <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Baños de Lujo</h3>
-              <div class="card-pillar-badge" style="margin-bottom:10px;">Piso y Pared Continuos</div>
-              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">Cero humedad ni hongos. Sanitización inmediata y sensación de spa de hotel de 5 estrellas.</p>
+              <div style="height:175px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'cbr_luxury_bathroom')}" alt="Baños de Lujo" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Zonas Húmedas</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">Baños de Lujo</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Piso y Pared Continuos</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">Cero humedad ni hongos. Sanitización inmediata y sensación de spa de hotel de 5 estrellas.</p>
             </div>
             <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.2); padding:8px 10px; border-radius:6px; font-size:14px; color:var(--gold-light);">
               💡 <strong>Tip:</strong> Acabado antideslizante R10 en plato de ducha para seguridad.
             </div>
           </div>
 
-          <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 3. Cocinas -->
+          <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
-              <span class="card-pillar-tag">Gourmet</span>
-              <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Cocinas de Autor</h3>
-              <div class="card-pillar-badge" style="margin-bottom:10px;">Resistencia Grasas y Ácidos</div>
-              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">Tolera salpicaduras de aceite hirviendo, limón y vino tinto sin mancharse en lo absoluto.</p>
+              <div style="height:175px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocinas de Autor" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Gourmet</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">Cocinas de Autor</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Resistencia Grasas y Ácidos</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">Tolera salpicaduras de aceite hirviendo, limón y vino tinto sin mancharse en lo absoluto.</p>
             </div>
             <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.2); padding:8px 10px; border-radius:6px; font-size:14px; color:var(--gold-light);">
               💡 <strong>Tip:</strong> Gres vitrificado impermeable resistente a salpicaduras ácidas.
             </div>
           </div>
 
-          <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 4. Terrazas -->
+          <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.layers}</div>
-              <span class="card-pillar-tag">Exterior</span>
-              <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Terrazas y Balcones</h3>
-              <div class="card-pillar-badge" style="margin-bottom:10px;">Inalterable al Sol y Lluvia</div>
-              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">Resistencia a los rayos UV; no se decolora, no absorbe agua lluvia y mantiene el grip.</p>
+              <div style="height:175px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'warm_illuminated_home')}" alt="Terrazas y Balcones" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Exterior</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">Terrazas y Balcones</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Inalterable al Sol y Lluvia</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">Resistencia a los rayos UV; no se decolora, no absorbe agua lluvia y mantiene el grip.</p>
             </div>
             <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.2); padding:8px 10px; border-radius:6px; font-size:14px; color:var(--gold-light);">
               💡 <strong>Tip:</strong> Filtro UV de alta resistencia para cero decoloración solar.
             </div>
           </div>
 
-          <div class="card-glass spotlight-card anim-2" style="padding:20px 16px; display:flex; flex-direction:column; justify-content:space-between;">
+          <!-- 5. Locales -->
+          <div class="card-glass spotlight-card anim-2" style="padding:16px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc">${ICONS.building}</div>
-              <span class="card-pillar-tag">Alto Tráfico</span>
-              <h3 class="card-pillar-title" style="font-size:22px; margin:10px 0 4px 0;">Locales y Oficinas</h3>
-              <div class="card-pillar-badge" style="margin-bottom:10px;">PEI 4 / PEI 5 Indestructible</div>
-              <p class="card-pillar-desc" style="font-size:17px; line-height:1.4;">Diseñado para recibir miles de pasos diarios conservando el brillo y la elegancia original.</p>
+              <div style="height:175px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'cbr_commercial_lobby')}" alt="Locales y Oficinas" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Alto Tráfico</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">Locales y Oficinas</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">PEI 4 / PEI 5 Indestructible</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">Diseñado para recibir miles de pasos diarios conservando el brillo y la elegancia original.</p>
             </div>
             <div style="background:rgba(212,175,55,0.14); border:1px solid var(--gold-primary); padding:8px 10px; border-radius:6px; font-size:14px; color:var(--gold-light);">
               ⭐ <strong>Tip:</strong> Clasificación PEI 5 para soportar alto flujo continuo.
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    `<!-- ==================== SLIDE 12: PROYECTOS QUE INSPIRAN ==================== -->
+    <!-- ==================== SLIDE 12: PROYECTOS QUE INSPIRAN ==================== -->
       <section class="slide" data-slide="12">
         ${getHeader(isModular, 12)}
 
@@ -1025,78 +1073,98 @@ function generateAll30Slides(isModular) {
           <div class="title-sub anim-1">La Tipología Visual del Comprador y Cómo Adaptar tu Discurso</div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:22px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <!-- 1. Diseñador -->
-          <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
-              <span class="card-pillar-tag">Perfil A</span>
-              <h3 class="card-pillar-title" style="font-size:22px;">El Estético / Diseñador</h3>
-              <div class="card-pillar-badge">Busca Belleza y Tendencia</div>
-              <p class="card-pillar-desc" style="font-size:17px; margin-top:10px;">
-                Llega con fotos de Pinterest y paletas de color en mano. Le importan las vetas, el tono de la iluminación y la armonía visual de su hogar.
+              <div style="height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'trend_calacatta')}" alt="El Estético Diseñador" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Perfil A</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">El Estético / Diseñador</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Busca Belleza y Tendencia</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">
+                Llega con fotos de Pinterest y paletas en mano. Le importan las vetas, el tono de la luz y la armonía visual de su hogar.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:12px; margin-top:14px;">
-              <div style="font-size:12px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
-              <div style="font-size:15px; color:#ffffff; font-style:italic; margin-top:4px;">Enfócate en la continuidad de vetas, luz y texturas satinadas de lujo silencioso.</div>
+            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:10px 12px; margin-top:10px;">
+              <div style="font-size:11px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
+              <div style="font-size:14px; color:#ffffff; font-style:italic; margin-top:4px;">Enfócate en la continuidad de vetas, luz y texturas de lujo silencioso.</div>
             </div>
           </div>
 
           <!-- 2. Técnico -->
-          <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.shieldCheck}</div>
-              <span class="card-pillar-tag">Perfil B</span>
-              <h3 class="card-pillar-title" style="font-size:22px;">El Racional / Técnico</h3>
-              <div class="card-pillar-badge">Busca Datos y Certidumbre</div>
-              <p class="card-pillar-desc" style="font-size:17px; margin-top:10px;">
-                Pregunta por la clasificación PEI, la dureza Mohs, la tasa de absorción y el espesor en milímetros. Desconfía de los halagos comerciales vacíos.
+              <div style="height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'porcelanato_macro_hd')}" alt="El Racional Técnico" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Perfil B</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">El Racional / Técnico</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Busca Datos y Certidumbre</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">
+                Pregunta por PEI, dureza Mohs, tasa de absorción y espesor en mm. Desconfía de los halagos comerciales vacíos.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:12px; margin-top:14px;">
-              <div style="font-size:12px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
-              <div style="font-size:15px; color:#ffffff; font-style:italic; margin-top:4px;">Presenta fichas técnicas, la cocción a 1.250°C y la absorción &lt;0.05%.</div>
+            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:10px 12px; margin-top:10px;">
+              <div style="font-size:11px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
+              <div style="font-size:14px; color:#ffffff; font-style:italic; margin-top:4px;">Presenta fichas técnicas, cocción a 1.250°C y absorción &lt;0.05%.</div>
             </div>
           </div>
 
           <!-- 3. Práctico -->
-          <div class="card-glass spotlight-card anim-2" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc">${ICONS.home}</div>
-              <span class="card-pillar-tag">Perfil C</span>
-              <h3 class="card-pillar-title" style="font-size:22px;">El Práctico / Familiar</h3>
-              <div class="card-pillar-badge">Busca Mantenimiento Cero</div>
-              <p class="card-pillar-desc" style="font-size:17px; margin-top:10px;">
-                Tiene niños pequeños o mascotas. Su dolor principal es limpiar todo el día o que el piso se raye con los juguetes o las garras del perro.
+              <div style="height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-border); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'apartamento_65m2')}" alt="El Práctico Familiar" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px;">Perfil C</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">El Práctico / Familiar</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Busca Mantenimiento Cero</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">
+                Tiene niños pequeños o mascotas. Su dolor principal es limpiar todo el día o que el piso se raye con juguetes o garras.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:12px; margin-top:14px;">
-              <div style="font-size:12px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
-              <div style="font-size:15px; color:#ffffff; font-style:italic; margin-top:4px;">Demuestra cómo se limpia solo con paño húmedo y su resistencia total a manchas.</div>
+            <div style="background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:8px; padding:10px 12px; margin-top:10px;">
+              <div style="font-size:11px; font-weight:800; letter-spacing:1px; color:var(--gold-primary); text-transform:uppercase;">🎯 Acción Asesor</div>
+              <div style="font-size:14px; color:#ffffff; font-style:italic; margin-top:4px;">Demuestra limpieza con paño húmedo y resistencia total a manchas.</div>
             </div>
           </div>
 
           <!-- 4. Indeciso -->
-          <div class="card-glass spotlight-card anim-2 gold-active-card" style="padding:24px 20px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="card-glass spotlight-card anim-2 gold-active-card" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
-              <span class="card-pillar-tag">Perfil D</span>
-              <h3 class="card-pillar-title" style="font-size:22px;">El Cauteloso / Indeciso</h3>
-              <div class="card-pillar-badge">Busca Validación y Guía</div>
-              <p class="card-pillar-desc" style="font-size:17px; margin-top:10px;">
-                Mira muchas opciones sin decidir. Teme que la sala le quede oscura o que el maestro se queje. Requiere que el asesor tome el liderazgo.
+              <div style="height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--gold-primary); margin-bottom:12px; position:relative;">
+                <img src="${getImgSrc(isModular, 'tile_consultation')}" alt="El Cauteloso Indeciso" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
+                <div style="position:absolute; bottom:8px; left:10px;">
+                  <span class="card-pillar-tag" style="margin:0; font-size:11px; padding:3px 8px; background:var(--gold-gradient); color:#080a10;">Perfil D</span>
+                </div>
+              </div>
+              <h3 class="card-pillar-title" style="font-size:21px; margin:4px 0 4px 0;">El Cauteloso / Indeciso</h3>
+              <div class="card-pillar-badge" style="margin-bottom:8px; font-size:12px;">Busca Validación y Guía</div>
+              <p class="card-pillar-desc" style="font-size:16px; line-height:1.4;">
+                Mira muchas opciones sin decidir. Teme que la sala le quede oscura o que el maestro falle. Requiere que el asesor tome el liderazgo.
               </p>
             </div>
-            <div style="background:rgba(212,175,55,0.14); border:1px solid var(--gold-primary); border-radius:8px; padding:12px; margin-top:14px;">
-              <div style="font-size:12px; font-weight:800; letter-spacing:1px; color:var(--gold-light); text-transform:uppercase;">⭐ Acción Asesor</div>
-              <div style="font-size:15px; color:#ffffff; font-weight:600; margin-top:4px;">Guíalo con los 3 escenarios y valida la opción ideal con el respaldo Alfadekor.</div>
+            <div style="background:rgba(212,175,55,0.14); border:1px solid var(--gold-primary); border-radius:8px; padding:10px 12px; margin-top:10px;">
+              <div style="font-size:11px; font-weight:800; letter-spacing:1px; color:var(--gold-light); text-transform:uppercase;">⭐ Acción Asesor</div>
+              <div style="font-size:14px; color:#ffffff; font-weight:600; margin-top:4px;">Guíalo con los 3 escenarios y valida la opción ideal con el respaldo Alfadekor.</div>
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    `<!-- ==================== SLIDE 14: LAS 5 PREGUNTAS MAESTRAS ==================== -->
+    <!-- ==================== SLIDE 14: LAS 5 PREGUNTAS MAESTRAS ==================== -->
       <section class="slide" data-slide="14">
         ${getHeader(isModular, 14)}
 
@@ -1244,63 +1312,58 @@ function generateAll30Slides(isModular) {
       <section class="slide" data-slide="16">
         ${getHeader(isModular, 16)}
 
-        <div style="margin-bottom:25px;">
+        <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">MÉTODO <span class="gold-gradient">CBR ALFADEKOR</span></h2>
           <div class="title-sub anim-1">La Fórmula Infalible: Característica → Beneficio → Resultado de Vida</div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; height:calc(100% - 200px); align-items:stretch; margin-bottom:15px;">
-          <div class="s30-pillar-card spotlight-card tilt-card anim-2">
-            <div>
-              <div class="s30-pillar-tag">Fase 1 · El Dato Técnico</div>
-              <div class="luxury-icon-disc">${ICONS.layers}</div>
-              <h3 class="s30-pillar-title">C · Característica</h3>
-              <div class="s30-pillar-badge">¿Qué es el producto?</div>
-              <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
-                La especificación tangible de fábrica. Ejemplos: "Absorción &lt;0.05%", "Rectificado con diamante a 90°", "Formato 60x120 cm", "Prensado a 400 kg/cm²".
+        <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
+          <!-- LEFT: Consultoría Showroom Hero -->
+          <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
+            <img src="${getImgSrc(isModular, 'cbr_consultoria_ventas')}" alt="Asesoría Consultiva CBR" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.9) 0%, rgba(8,10,16,0.3) 50%, transparent 100%);"></div>
+            <div style="position:absolute; bottom:25px; left:25px; right:25px;">
+              <span class="gold-ribbon">La Metodología Comercial</span>
+              <div style="font-family:var(--font-serif); font-size:28px; font-weight:800; color:#fff; margin-top:8px;">Conectar la Técnica con la Emoción</div>
+              <p style="font-size:17px; color:var(--text-muted); margin-top:8px; line-height:1.4;">
+                El 85% de las decisiones de compra se toman por el Resultado de Vida, no por la ficha técnica aislada. El método CBR convierte datos fríos en deseos irresistibles de transformar el hogar.
               </p>
-            </div>
-            <div style="font-size:17px; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.1); padding-top:12px;">
-              ⚠️ <em>El cliente NO compra características por sí solas.</em>
             </div>
           </div>
 
-          <div class="s30-pillar-card spotlight-card tilt-card anim-2">
-            <div>
-              <div class="s30-pillar-tag">Fase 2 · La Utilidad</div>
-              <div class="luxury-icon-disc">${ICONS.sparkles}</div>
-              <h3 class="s30-pillar-title">B · Beneficio</h3>
-              <div class="s30-pillar-badge">¿Qué hace por el cliente?</div>
-              <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
-                La función práctica en el hogar. Ejemplos: "No absorbe humedad ni grasa", "Las juntas se reducen a 1mm", "Se limpia en minutos", "Resiste muebles pesados sin rayarse".
-              </p>
+          <!-- RIGHT: 3 CBR Cards -->
+          <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
+            <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
+              <div>
+                <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">C · CARACTERÍSTICA (EL DATO TÉCNICO)</div>
+                <div style="font-size:18px; color:#fff; margin-top:4px;">"La especificación física de fábrica: absorción &lt;0.05%, rectificado a 90° con diamante y prensado a 1.250°C."</div>
+                <div style="font-size:14px; color:var(--text-muted); margin-top:4px;">⚠️ <em>El cliente NO compra características por sí solas.</em></div>
+              </div>
             </div>
-            <div style="font-size:17px; color:var(--gold-light); border-top:1px solid rgba(212,175,55,0.2); padding-top:12px;">
-              💡 <em>El beneficio justifica la utilidad en el día a día.</em>
-            </div>
-          </div>
 
-          <div class="s30-pillar-card spotlight-card tilt-card gold-active-card anim-2">
-            <div>
-              <div class="s30-pillar-tag">Fase 3 · La Emoción</div>
-              <div class="luxury-icon-disc core-disc">${ICONS.award}</div>
-              <h3 class="s30-pillar-title">R · Resultado</h3>
-              <div class="s30-pillar-badge">¿Qué emoción o estatus vivirá?</div>
-              <p class="s30-pillar-desc" style="font-size:20px; margin-top:14px;">
-                El impacto final en su vida. Ejemplos: "Tener la tranquilidad de que su piso se verá idéntico por 20 años", "Orgullo al recibir visitas", "Aumento inmediato de plusvalía".
-              </p>
+            <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
+              <div>
+                <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">B · BENEFICIO (LA UTILIDAD PRÁCTICA)</div>
+                <div style="font-size:18px; color:#fff; margin-top:4px;">"Lo que el producto hace en el día a día: no absorbe manchas de grasa ni vino, reduce juntas a 1mm y se limpia en segundos sin ceras."</div>
+                <div style="font-size:14px; color:var(--gold-light); margin-top:4px;">💡 <em>El beneficio justifica la utilidad y la comodidad.</em></div>
+              </div>
             </div>
-            <div style="font-size:17px; color:#ffffff; font-weight:700; border-top:1px solid rgba(255,255,255,0.2); padding-top:12px;">
-              🏆 <em>¡EL RESULTADO ES LO QUE REALMENTE CIERRA LA VENTA!</em>
+
+            <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
+              <div>
+                <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">R · RESULTADO DE VIDA (LA EMOCIÓN FINAL)</div>
+                <div style="font-size:19px; color:#ffffff; font-weight:600; margin-top:4px;">"El impacto en su vida y estatus: orgullo absoluto al recibir invitados, tranquilidad con niños y mascotas, y un piso impecable por 25 años."</div>
+                <div style="font-size:14px; color:var(--gold-primary); font-weight:700; margin-top:4px;">🏆 <em>¡EL RESULTADO ES LO QUE REALMENTE CIERRA LA VENTA!</em></div>
+              </div>
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    // -------------------------------------------------------------
-    // SLIDE 17: CBR EN UNA SALA
-    // -------------------------------------------------------------
-    `<!-- ==================== SLIDE 17: CBR EN UNA SALA ==================== -->
+    <!-- ==================== SLIDE 17: CBR EN UNA SALA ==================== -->
       <section class="slide" data-slide="17">
         ${getHeader(isModular, 17)}
 
@@ -1399,7 +1462,7 @@ function generateAll30Slides(isModular) {
     // -------------------------------------------------------------
     `<!-- ==================== SLIDE 19: CBR EN COCINAS ==================== -->
       <section class="slide" data-slide="19">
-        \${getHeader(isModular, 19)}
+        ${getHeader(isModular, 19)}
 
         <div style="margin-bottom:20px;">
           <h2 class="title-large anim-1">CBR APLICADO: <span class="gold-gradient">EN COCINAS GOURMET</span></h2>
@@ -1408,7 +1471,7 @@ function generateAll30Slides(isModular) {
 
         <div style="display:grid; grid-template-columns: 0.95fr 1.05fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
           <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
-            <img src="\${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${getImgSrc(isModular, 'cbr_luxury_kitchen')}" alt="Cocina Gourmet" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.85) 0%, transparent 40%);"></div>
             <div style="position:absolute; bottom:25px; left:25px; right:25px;">
               <span class="gold-ribbon">Área Culinaria</span>
@@ -1418,7 +1481,7 @@ function generateAll30Slides(isModular) {
 
           <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;">\${ICONS.layers}</div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-primary);">CARACTERÍSTICA</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Porcelanato horneado a 1250°C con cero porosidad superficial y resistencia a manchas químicas."</div>
@@ -1426,7 +1489,7 @@ function generateAll30Slides(isModular) {
             </div>
 
             <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
-              <div class="luxury-icon-disc" style="margin-bottom:0;">\${ICONS.sparkles}</div>
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
               <div>
                 <div style="font-size:14px; font-weight:800; letter-spacing:2px; color:var(--gold-light);">BENEFICIO</div>
                 <div style="font-size:19px; color:#fff; margin-top:4px;">"Puede caer aceite caliente, salsa de tomate o vino tinto; nada se absorbe ni deja mancha permanente."</div>
@@ -1434,7 +1497,7 @@ function generateAll30Slides(isModular) {
             </div>
 
             <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%); flex:1;">
-              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">\${ICONS.award}</div>
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.award}</div>
               <div>
                 <div style="font-size:15px; font-weight:900; letter-spacing:2px; color:var(--gold-primary);">RESULTADO DE VIDA</div>
                 <div style="font-size:20px; color:#ffffff; font-weight:600; margin-top:4px;">"Cocinar con libertad absoluta sabiendo que con un solo paño húmedo su cocina volverá a quedar reluciente."</div>
@@ -1597,61 +1660,65 @@ function generateAll30Slides(isModular) {
           <div class="title-sub anim-1">Cómo Guiar la Decisión del Cliente Hacia la Opción de Mayor Valor</div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
-          <!-- 1. Económica -->
-          <div class="card-glass spotlight-card anim-2" style="padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <div class="luxury-icon-disc">${ICONS.layers}</div>
-              <span class="card-pillar-tag">Escenario 1</span>
-              <h3 class="card-pillar-title">Opción Básica / Económica</h3>
-              <div class="card-pillar-badge">Formato 60x60 cm</div>
-              <p class="card-pillar-desc" style="margin-top:14px;">
-                Cumple técnicamente la función básica. Sin embargo, tiene el doble de juntas visibles y menor sensación de amplitud. Sirve de ancla para mostrar el salto de calidad.
+        <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:36px; height:calc(100% - 190px); align-items:stretch; margin-bottom:10px;">
+          <!-- LEFT: Muestras Físicas Hero -->
+          <div style="border-radius:12px; overflow:hidden; border:1px solid var(--gold-border); position:relative;">
+            <img src="${getImgSrc(isModular, 'tile_samples_three')}" alt="Tres Escenarios de Venta" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(8,10,16,0.9) 0%, rgba(8,10,16,0.3) 50%, transparent 100%);"></div>
+            <div style="position:absolute; bottom:25px; left:25px; right:25px;">
+              <span class="gold-ribbon">Estrategia Showroom</span>
+              <div style="font-family:var(--font-serif); font-size:28px; font-weight:800; color:#fff; margin-top:8px;">Muestras Físicas en Mano</div>
+              <p style="font-size:17px; color:var(--text-muted); margin-top:8px; line-height:1.4;">
+                Nunca presentes una sola opción. Coloca 3 muestras físicas frente al cliente. Al comparar el tacto y formato entre 60x60 y 60x120, la diferencia de precio se percibe insignificante frente a la superioridad estética.
               </p>
-            </div>
-            <div style="background:rgba(255,255,255,0.05); padding:12px; border-radius:8px; font-size:17px; color:var(--text-muted);">
-              Presupuesto ajustado · Menor impacto visual.
             </div>
           </div>
 
-          <!-- 2. Ideal Alfadekor -->
-          <div class="card-glass spotlight-card anim-2" style="padding:30px; border:1.5px solid var(--gold-primary); display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(14,18,28,0.95) 100%);">
-            <div>
-              <div class="luxury-icon-disc core-disc">${ICONS.sparkles}</div>
-              <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900;">RECOMENDACIÓN IDEAL</span>
-              <h3 class="card-pillar-title">Porcelanato 60x120 cm</h3>
-              <div class="card-pillar-badge">El Punto Óptimo de Lujo y Valor</div>
-              <p class="card-pillar-desc" style="margin-top:14px;">
-                El balance perfecto entre inversión inteligente y transformación visual imponente. Multiplica la amplitud, reduce juntas y ofrece la mayor plusvalía comprobada.
-              </p>
+          <!-- RIGHT: 3 Scenario Cards -->
+          <div style="display:flex; flex-direction:column; gap:18px; justify-content:space-between; height:100%;">
+            <!-- 1. Económica -->
+            <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.layers}</div>
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="card-pillar-tag" style="margin:0;">Escenario 1</span>
+                  <span style="font-family:var(--font-serif); font-size:20px; font-weight:700; color:var(--text-muted);">60x60 cm</span>
+                </div>
+                <div style="font-size:18px; font-weight:700; color:#fff; margin-top:4px;">Opción Básica / Económica</div>
+                <div style="font-size:16px; color:var(--text-muted); margin-top:2px;">Cumple la función básica pero triplica las juntas visibles. Sirve como ancla de contraste para evidenciar el salto estético.</div>
+              </div>
             </div>
-            <div style="background:rgba(212,175,55,0.2); border:1px solid var(--gold-primary); padding:12px; border-radius:8px; font-size:18px; color:var(--gold-light); font-weight:700;">
-              ⭐ El 85% de nuestros clientes eligen este escenario.
-            </div>
-          </div>
 
-          <!-- 3. Premium Slabs -->
-          <div class="card-glass spotlight-card anim-2" style="padding:30px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <div class="luxury-icon-disc">${ICONS.award}</div>
-              <span class="card-pillar-tag">Escenario 3</span>
-              <h3 class="card-pillar-title">Maxi Slabs Exclusivos</h3>
-              <div class="card-pillar-badge">Formato 120x240 cm</div>
-              <p class="card-pillar-desc" style="margin-top:14px;">
-                Máxima sofisticación sin límites de presupuesto. Placas monolíticas de suelo a techo. Ideal para clientes que buscan exclusividad arquitectónica absoluta.
-              </p>
+            <!-- 2. Ideal Alfadekor -->
+            <div class="card-glass spotlight-card" style="padding:24px 26px; display:flex; align-items:center; gap:20px; border-color:var(--gold-primary); background:linear-gradient(180deg, rgba(212,175,55,0.16) 0%, rgba(14,18,28,0.95) 100%); box-shadow:0 15px 35px rgba(0,0,0,0.6), 0 0 25px rgba(212,175,55,0.2); flex:1.15;">
+              <div class="luxury-icon-disc core-disc" style="margin-bottom:0;">${ICONS.sparkles}</div>
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="card-pillar-tag" style="background:var(--gold-gradient); color:#080a10; font-weight:900; margin:0;">RECOMENDACIÓN IDEAL</span>
+                  <span style="font-family:var(--font-serif); font-size:22px; font-weight:800; color:var(--gold-light);">60x120 cm</span>
+                </div>
+                <div style="font-size:19px; font-weight:800; color:var(--gold-light); margin-top:4px;">El Punto Óptimo de Lujo y Valor</div>
+                <div style="font-size:16px; color:#ffffff; margin-top:2px; font-weight:500;">Multiplica la amplitud, reduce juntas a la mitad y maximiza el avalúo de reventa. ¡El 85% de los clientes eligen este escenario!</div>
+              </div>
             </div>
-            <div style="background:rgba(255,255,255,0.05); padding:12px; border-radius:8px; font-size:17px; color:var(--text-muted);">
-              Lujo sin concesiones · Arquitectura de autor.
+
+            <!-- 3. Premium Slabs -->
+            <div class="card-glass spotlight-card" style="padding:22px 26px; display:flex; align-items:center; gap:20px; flex:1;">
+              <div class="luxury-icon-disc" style="margin-bottom:0;">${ICONS.award}</div>
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="card-pillar-tag" style="margin:0;">Escenario 3</span>
+                  <span style="font-family:var(--font-serif); font-size:20px; font-weight:700; color:var(--gold-primary);">120x240 cm</span>
+                </div>
+                <div style="font-size:18px; font-weight:700; color:#fff; margin-top:4px;">Maxi Slabs Exclusivos</div>
+                <div style="font-size:16px; color:var(--text-muted); margin-top:2px;">Placas continuas piso-a-techo de autor. Para clientes que buscan distinción arquitectónica sin límites presupuestarios.</div>
+              </div>
             </div>
           </div>
         </div>
-      </section>`,
+      </section>
 
-    // -------------------------------------------------------------
-    // SLIDE 24: CIERRE POR VISUALIZACIÓN
-    // -------------------------------------------------------------
-    `<!-- ==================== SLIDE 24: CIERRE POR VISUALIZACIÓN ==================== -->
+    <!-- ==================== SLIDE 24: CIERRE POR VISUALIZACIÓN ==================== -->
       <section class="slide" data-slide="24">
         ${getHeader(isModular, 24)}
 
@@ -2549,8 +2616,52 @@ class DeckEngine {
   }
 }
 
+
+function printPresentation() {
+  // Temporarily reveal ALL slides for print
+  const slides = document.querySelectorAll('.slide');
+  const originalClasses = [];
+  slides.forEach((slide, idx) => {
+    originalClasses.push(slide.className);
+    // Make all slides visible
+    slide.classList.remove('slide-exit-next', 'slide-exit-prev');
+    if (!slide.classList.contains('active')) {
+      slide.classList.add('print-reveal');
+    }
+    // Reveal all animated elements
+    slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+
+  window.print();
+
+  // Restore original state after print dialog
+  setTimeout(() => {
+    slides.forEach((slide, idx) => {
+      slide.className = originalClasses[idx];
+      // Restore animations for non-active slides (visual only)
+      if (!slide.classList.contains('active')) {
+        slide.querySelectorAll('[class*="anim-"]').forEach(el => {
+          el.style.opacity = '';
+          el.style.transform = '';
+        });
+      }
+    });
+  }, 1000);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   window.deck = new DeckEngine();
+
+  // Keyboard shortcut P for print
+  window.addEventListener('keydown', (e) => {
+    if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      printPresentation();
+    }
+  });
 });
 `;
 
@@ -2635,6 +2746,9 @@ ${slidesHtml}
       <button class="nav-btn" onclick="deck.toggleGrid()" title="Vista Cuadrícula (G)">
         ${ICONS.grid}
       </button>
+      <button class="nav-btn" onclick="printPresentation()" title="Imprimir Presentación (P)" style="position:relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
       <button class="nav-btn" onclick="deck.toggleAudio()" id="audioBtn" title="Efectos de Audio (M)">
         ${ICONS.volume}
       </button>
@@ -2689,6 +2803,10 @@ ${slidesHtml}
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Ver cuadrícula</span>
           <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">G</kbd>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <span style="color:var(--text-sub);">Imprimir presentación</span>
+          <kbd style="background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px; font-weight:700; color:var(--gold-light);">P</kbd>
         </div>
         <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
           <span style="color:var(--text-sub);">Silenciar audio</span>

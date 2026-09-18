@@ -565,13 +565,16 @@ html, body {
   box-shadow: 0 0 10px var(--gold-primary);
   transition: width 0.35s ease;
 }
-`
 
 /* ============================================================
    PRINT STYLES - Impresión profesional de las 30 láminas
    ============================================================ */
+@page {
+  size: letter landscape;
+  margin: 0;
+}
+
 @media print {
-  /* --- Reset para impresión --- */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -579,10 +582,10 @@ html, body {
   }
 
   html, body {
-    width: auto !important;
+    width: 100% !important;
     height: auto !important;
     overflow: visible !important;
-    background: white !important;
+    background: #080a10 !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -619,7 +622,7 @@ html, body {
     background: transparent !important;
   }
 
-  /* Cada slide = una página */
+  /* Cada slide = exactamente 1 página carta horizontal */
   .slide {
     display: flex !important;
     position: relative !important;
@@ -629,16 +632,20 @@ html, body {
     filter: none !important;
     transform: none !important;
     transition: none !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 95vh !important;
+    width: 11in !important;
+    height: 8.5in !important;
+    max-width: 11in !important;
+    max-height: 8.5in !important;
+    box-sizing: border-box !important;
     page-break-after: always !important;
     break-after: page !important;
-    padding: 28mm 22mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    padding: 36px 55px !important;
     background: #080a10 !important;
     border: none !important;
     box-shadow: none !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     flex-direction: column !important;
   }
 
@@ -660,8 +667,8 @@ html, body {
 
   /* El último slide no necesita page-break */
   .slide:last-of-type {
-    page-break-after: avoid !important;
-    break-after: avoid !important;
+    page-break-after: auto !important;
+    break-after: auto !important;
   }
 
   /* Asegura que las imágenes se muestren */
@@ -671,29 +678,10 @@ html, body {
     break-inside: avoid !important;
   }
 
-  /* Tipografía de alta calidad en blanco/dorado sobre oscuro */
-  .title-large { font-size: 28pt !important; }
-  .title-sub { font-size: 13pt !important; }
-
-  /* Número de slide visible en print */
-  .slide-num {
-    font-size: 18pt !important;
-    color: var(--gold-primary) !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  /* Header logo */
-  .slide-meta {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 20px !important;
-  }
-
-  /* Slides de transición (slide-exit, etc.) no se muestran */
+  /* Slides de transición */
   .slide-exit-next,
   .slide-exit-prev {
-    display: none !important;
+    display: flex !important;
   }
 }
 
